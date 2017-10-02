@@ -11,10 +11,16 @@ $ISADMIN = false;
 $USERNAME = '';
 $USERREALNAME = '';
 
+$PAGE = 'index';
+
 session_start();
 
 function get_datetime() {
 	return date('Y-m-d H:i:s');
+}
+
+if (isset($_GET['page'])) {
+	$PAGE = $_GET['page'];
 }
 
 if (isset($_GET['log_out'])) {
