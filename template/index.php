@@ -28,7 +28,7 @@
 						<?php
 						if ($ISADMIN) { ?>
 						<li class="nav-item">
-							<a class="nav-link" href="?page=admin">Link</a>
+							<a class="nav-link" href="?page=admin">Admin</a>
 						</li>
 						<?php } ?>
 						<li class="nav-item dropdown">
