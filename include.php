@@ -7,10 +7,15 @@ require_once('config.php');
 $DB = mysqli_connect('localhost', $DBUSERNAME, $DBPASSWORD, $DBNAME);
 
 $LOGGEDIN = false;
+$ISADMIN = false;
 $USERNAME = '';
 $USERREALNAME = '';
 
 session_start();
+
+function get_datetime() {
+	return date('Y-m-d H:i:s');
+}
 
 if (isset($_GET['log_out'])) {
 	unset($_SESSION);
@@ -21,6 +26,7 @@ if (isset($_GET['log_out'])) {
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 	$LOGGEDIN = true;
+	$ISADMIN = $_SESSION['admin'];
 	$USERNAME = $_SESSION['username'];
 	$USERREALNAME = $_SESSION['name'];
 }
@@ -35,10 +41,12 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$LOGGEDIN = true;
+		$ISADMIN = $row['admin'];
 		$USERNAME = $row['username'];
 		$USERREALNAME = $row['name'];
 		
 		$_SESSION['loggedin'] = true;
+		$_SESSION['admin'] = $ISADMIN;
 		$_SESSION['username'] = $USERNAME;
 		$_SESSION['name'] = $USERREALNAME;
 	}

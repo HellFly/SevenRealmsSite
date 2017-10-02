@@ -1,0 +1,90 @@
+<?php
+include '_admin.php';
+
+$warning = '';
+$message = '';
+
+if (isset($_POST['name'])) {
+	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['username']) || empty($_POST['password'])) {
+		$warning = 'Please fill in all the fields';
+	}
+	else {
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$admin = false;
+		if (isset($_POST['admin'])) {
+			$admin = true;
+		}
+		
+		$password = md5('saltSR2017' . $password);
+		
+		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`)
+			VALUES (\'' . get_datetime() . '\',
+			\'' . $username . '\',
+			\'' . $password . '\',
+			\'' . $name . '\',
+			\'' . $email . '\',
+			\'' . $admin . '\');';
+		
+		echo $query;
+		$success = mysqli_query($DB, $query);
+		if ($success) {
+			$message = 'The user was created';
+		}
+		else {
+			$warning = mysqli_error($DB);
+		}
+	}
+}
+
+if ($message != '') { ?>
+	<div class="alert alert-success" role="alert">
+		<?php echo $message; ?>
+	</div>
+<?php }
+if ($warning != '') { ?>
+	<div class="alert alert-warning" role="alert">
+		<?php echo $warning; ?>
+	</div>
+<?php }
+?>
+<div class="row">
+	<div class="col">
+		<div class="card">
+			<div class="card-header">
+				Create a user
+			</div>
+			<div class="card-body">
+				<p>
+					<form action="" method="POST">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input class="form-control" name="name" type="text"></input>
+						</div>
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input class="form-control" name="email" type="email"></input>
+						</div>
+						<div class="form-group">
+							<label for="username">Username</label>
+							<input class="form-control" name="username" type="text"></input>
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							<input class="form-control" name="password" type="password"></input>
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" name="admin" type="checkbox" />
+								Admin
+							</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Create</button>
+					</form>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
