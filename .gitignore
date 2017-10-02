@@ -2,3 +2,4 @@
 # Don't track the passwords and configuration #
 config.php
 .htaccess
+cgi-bin/
