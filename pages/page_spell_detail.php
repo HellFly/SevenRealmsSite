@@ -45,7 +45,7 @@ $row = mysqli_fetch_assoc($result);
 							</tr>
 						</tbody>
 					</table>
-				<a class="btn btn-secondary" href="?page=page_spells">Back</a>
+				<a class="btn btn-secondary" href="?page=page_spell_list">Back</a>
 			</div>
 		</div>
 	</div>

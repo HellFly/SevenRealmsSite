@@ -15,7 +15,7 @@
 	<body>
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container">
-				<a class="navbar-brand" href="#">Seven Realms</a>
+				<a class="navbar-brand" href="index.php">Seven Realms</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -34,10 +34,11 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contents</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown01">
-								<a class="dropdown-item" href="?page=page_spells">Spell list</a>
+								<a class="dropdown-item" href="?page=page_spell_list">Spell list</a>
 							</div>
 						</li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
 					<?php
 					if ($LOGGEDIN == false) { ?>
 						<form class="form-inline my-2 my-lg-0" method="POST" action="">
@@ -49,19 +50,24 @@
 					else { ?>
 						<li class="nav-item nav-link disabled">Welcome <?php echo $USERREALNAME; ?></li><a href="?log_out" class="btn btn-outline-success my-2 my-sm-0">Log out</a>
 					<?php } ?>
+					</ul>
 				</div>
 			</div>
 		</nav>
 		
-		<div class="jumbotron">
+		<?php
+		if ($SHOW_JUMBOTRON == true) { ?>
+		<div class="jumbotron mb-0">
 			<div class="container">
 				<h1 class="display-3">Hello, world!</h1>
 				<p>This is the beginning of the website for the Seven Realms game. More content will be added in the future.</p>
-				<p><a class="btn btn-primary btn-lg" href="#" role="button">Dismiss</a></p>
+				<p><a class="btn btn-primary btn-lg" href="?hide=yes&page=<?php echo $PAGE; ?>" role="button">Dismiss</a></p>
 			</div>
 		</div>
+		<?php
+		} ?>
 		
-		<div class="container">
+		<div class="container mt-3">
 			
 			{{content}}
 

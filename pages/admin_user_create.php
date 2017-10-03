@@ -57,33 +57,32 @@ if ($warning != '') { ?>
 				Create a user
 			</div>
 			<div class="card-body">
-				<p>
-					<form action="" method="POST">
-						<div class="form-group">
-							<label for="name">Name</label>
-							<input class="form-control" name="name" type="text"></input>
-						</div>
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input class="form-control" name="email" type="email"></input>
-						</div>
-						<div class="form-group">
-							<label for="username">Username</label>
-							<input class="form-control" name="username" type="text"></input>
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input class="form-control" name="password" type="password"></input>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label">
-								<input class="form-check-input" name="admin" type="checkbox" />
-								Admin
-							</label>
-						</div>
-						<button type="submit" class="btn btn-primary">Create</button>
-					</form>
-				</p>
+				<form action="" method="POST">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input class="form-control" name="name" type="text"></input>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input class="form-control" name="email" type="email"></input>
+					</div>
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input class="form-control" name="username" type="text"></input>
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input class="form-control" name="password" type="password"></input>
+					</div>
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input" name="admin" type="checkbox" />
+							Admin
+						</label>
+					</div>
+					<a href="?page=admin" class="btn btn-primary">Back</a>
+					<button type="submit" class="btn btn-primary">Create</button>
+				</form>
 			</div>
 		</div>
 	</div>

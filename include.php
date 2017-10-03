@@ -12,11 +12,20 @@ $USERNAME = '';
 $USERREALNAME = '';
 
 $PAGE = 'index';
+$SHOW_JUMBOTRON = true;
 
 session_start();
 
 function get_datetime() {
 	return date('Y-m-d H:i:s');
+}
+
+if (isset($_GET['hide'])) {
+	setcookie('jumbotron', 1);
+	$SHOW_JUMBOTRON = false;
+}
+if (isset($_COOKIE['jumbotron'])) {
+	$SHOW_JUMBOTRON = false;
 }
 
 if (isset($_GET['page'])) {
