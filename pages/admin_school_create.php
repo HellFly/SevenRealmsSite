@@ -5,32 +5,23 @@ $warning = '';
 $message = '';
 
 if (isset($_POST['name'])) {
-	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['username']) || empty($_POST['password'])) {
+	if (empty($_POST['name']) || empty($_POST['short_description']) || empty($_POST['long_description'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
 		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$admin = false;
-		if (isset($_POST['admin'])) {
-			$admin = true;
-		}
+		$short_description = $_POST['short_description'];
+		$long_description = $_POST['long_description'];
 		
-		$password = md5('saltSR2017' . $password);
-		
-		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`)
+		$query = 'INSERT INTO magic_school(`created_at`, `name`, `short_description`, `long_description`)
 			VALUES (\'' . get_datetime() . '\',
-			\'' . $username . '\',
-			\'' . $password . '\',
 			\'' . $name . '\',
-			\'' . $email . '\',
-			\'' . $admin . '\');';
+			\'' . $short_description . '\',
+			\'' . $long_description . '\');';
 		
 		$success = mysqli_query($DB, $query);
 		if ($success) {
-			$message = 'The user was created';
+			$message = 'The magic school was created';
 		}
 		else {
 			$warning = mysqli_error($DB);
@@ -53,7 +44,7 @@ if ($warning != '') { ?>
 	<div class="col">
 		<div class="card">
 			<div class="card-header">
-				Create a user
+				Create a magic school
 			</div>
 			<div class="card-body">
 				<form action="" method="POST">
@@ -62,22 +53,12 @@ if ($warning != '') { ?>
 						<input class="form-control" name="name" type="text"></input>
 					</div>
 					<div class="form-group">
-						<label for="email">Email</label>
-						<input class="form-control" name="email" type="email"></input>
+						<label for="short_description">Short description</label>
+						<textarea class="form-control" name="short_description" rows="3"></textarea>
 					</div>
 					<div class="form-group">
-						<label for="username">Username</label>
-						<input class="form-control" name="username" type="text"></input>
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input class="form-control" name="password" type="password"></input>
-					</div>
-					<div class="form-check">
-						<label class="form-check-label">
-							<input class="form-check-input" name="admin" type="checkbox" />
-							Admin
-						</label>
+						<label for="long_description">Long description</label>
+						<textarea class="form-control" name="long_description" rows="5"></textarea>
 					</div>
 					<a href="?page=admin" class="btn btn-primary">Back</a>
 					<button type="submit" class="btn btn-primary">Create</button>

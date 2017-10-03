@@ -35,6 +35,7 @@
 							<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contents</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown01">
 								<a class="dropdown-item" href="?page=page_spell_list">Spell list</a>
+								<a class="dropdown-item" href="?page=page_school_list">Magic school list</a>
 							</div>
 						</li>
 					</ul>

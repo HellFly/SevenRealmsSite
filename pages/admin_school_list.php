@@ -1,14 +1,15 @@
 <?php
 include '_admin.php';
 
-$query = 'SELECT * FROM user';
+$query = 'SELECT * FROM magic_school';
+
 $result = mysqli_query($DB, $query);
 ?>
 <div class="row">
 	<div class="col">
 		<div class="card">
 			<div class="card-header">
-				User list
+				Magic school list
 			</div>
 			<div class="card-body">
 				<p class="card-text">
@@ -18,11 +19,8 @@ $result = mysqli_query($DB, $query);
 							<tr>
 								<th>ID</th>
 								<th>Created at</th>
-								<th>Username</th>
-								<th>Password</th>
 								<th>Name</th>
-								<th>Email</th>
-								<th>Admin</th>
+								<th>Short description</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -33,12 +31,9 @@ $result = mysqli_query($DB, $query);
 									<tr>
 										<th scope="row"><?php echo $row['id']; ?></th>
 										<td><?php echo $row['created_at']; ?></td>
-										<td><?php echo $row['username']; ?></td>
-										<td>**********</td>
 										<td><?php echo $row['name']; ?></td>
-										<td><?php echo $row['email']; ?></td>
-										<td><?php echo ($row['admin'] ? 'Yes' : 'No'); ?></td>
-										<td><a href="?page=admin_user_edit&user=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+										<td><?php echo $row['short_description']; ?></td>
+										<td><a href="?page=admin_school_edit&school=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
 									</tr>
 								<?php
 							}
