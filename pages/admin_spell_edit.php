@@ -81,7 +81,7 @@ if ($warning != '') { ?>
 							$result = mysqli_query($DB, $query);
 							while ($school_row = mysqli_fetch_assoc($result)) {
 								?>
-									<option value="<?php echo $school_row['id']; ?>"<?php if ($row['id'] == $school_row['id']) { echo ' selected="selected"'; } ?>><?php echo $school_row['name']; ?></option>
+									<option value="<?php echo $school_row['id']; ?>"<?php if ($row['school_id'] == $school_row['id']) { echo ' selected="selected"'; } ?>><?php echo $school_row['name']; ?></option>
 								<?php
 							}
 						?>
