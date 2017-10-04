@@ -43,10 +43,9 @@ if ($warning != '') { ?>
 <div class="row">
 	<div class="col">
 		<div class="card">
-			<div class="card-header">
-				Create a magic school
-			</div>
 			<div class="card-body">
+				<h3 class="card-title">Create a magic school</h3>
+				<hr>
 				<form action="" method="POST">
 					<div class="form-group">
 						<label for="name">Name</label>

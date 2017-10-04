@@ -7,10 +7,9 @@ $result = mysqli_query($DB, $query);
 <div class="row">
 	<div class="col">
 		<div class="card">
-			<div class="card-header">
-				User list
-			</div>
 			<div class="card-body">
+				<h3 class="card-title">User list</h3>
+				<hr>
 				<p class="card-text">
 					<a href="?page=admin" class="btn btn-primary">Back</a>
 					<table class="table">
