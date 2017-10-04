@@ -21,7 +21,7 @@ $row = mysqli_fetch_assoc($result);
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn btn-secondary" href="?page=page_school_list">Back</a>
+				<a class="btn btn-primary" href="?page=page_school_list">Back</a>
 			</div>
 		</div>
 	</div>

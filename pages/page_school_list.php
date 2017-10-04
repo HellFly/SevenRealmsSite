@@ -13,7 +13,7 @@ $result = mysqli_query($DB, $query);
 					<h3 class="card-title"><?php echo $row['name']; ?></h3>
 					<p class="card-text">
 						<?php echo $row['short_description']; ?></p>
-					<a class="btn btn-secondary" href="?page=page_school_detail&school_id=<?php echo $row['id']; ?>">View details &raquo;</a>
+					<a class="btn btn-primary" href="?page=page_school_detail&school_id=<?php echo $row['id']; ?>">View details &raquo;</a>
 				</div>
 			</div>
 		</div>
