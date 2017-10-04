@@ -40,6 +40,7 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contents</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown01">
+								<a class="dropdown-item <?php if ($PAGE == 'page_character') { echo ' active'; } ?>" href="?page=page_character">Character</a>
 								<a class="dropdown-item <?php if ($PAGE == 'page_magic') { echo ' active'; } ?>" href="?page=page_magic">Magic</a>
 							</div>
 						</li>

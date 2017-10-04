@@ -38,4 +38,28 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-6 mb-3">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Classes</h3>
+				<hr>
+				<p class="card-text">
+					<a href="?page=admin_class_list" class="btn btn-primary">View classes</a>
+					<a href="?page=admin_class_create" class="btn btn-primary">Create a class</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 mb-3">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Races</h3>
+				<hr>
+				<p class="card-text">
+					<a href="?page=admin_race_list" class="btn btn-primary">View races</a>
+					<a href="?page=admin_race_create" class="btn btn-primary">Create a race</a>
+				</p>
+			</div>
+		</div>
+	</div>
 </div>
