@@ -26,6 +26,12 @@
 							<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 						</li>
 						<?php
+						if ($LOGGEDIN) { ?>
+						<li class="nav-item<?php if ($PAGE == 'user') { echo ' active'; } ?>">
+							<a class="nav-link" href="?page=user">User</a>
+						</li>
+						<?php } ?>
+						<?php
 						if ($ISADMIN) { ?>
 						<li class="nav-item<?php if ($PAGE == 'admin') { echo ' active'; } ?>">
 							<a class="nav-link" href="?page=admin">Admin</a>

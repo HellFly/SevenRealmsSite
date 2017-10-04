@@ -16,35 +16,34 @@ $row = mysqli_fetch_assoc($result);
 		<div class="card">
 			<div class="card-body">
 				<h3 class="card-title"><?php echo $row['name']; ?></h3>
-				<p class="card-text">
-					<table class="table">
-						<tbody>
-							<tr>
-								<th scope="row">School</th>
-								<td><?php echo $row['magic_school']; ?></td>
-							</tr>
-							<tr>
-								<th scope="row">Level</th>
-								<td><?php echo $row['level']; ?></td>
-							</tr>
-							<tr>
-								<th scope="row">Range</th>
-								<td><?php echo $row['range']; ?></td>
-							</tr>
-							<tr>
-								<th scope="row">Materials</th>
-								<td><?php echo $row['materials']; ?></td>
-							</tr>
-							<tr>
-								<th scope="row">Duration</th>
-								<td><?php echo $row['duration']; ?></td>
-							</tr>
-							<tr>
-								<th scope="row">Description</th>
-								<td><?php echo $row['long_description']; ?></td>
-							</tr>
-						</tbody>
-					</table>
+				<table class="table">
+					<tbody>
+						<tr>
+							<th scope="row">School</th>
+							<td><?php echo $row['magic_school']; ?></td>
+						</tr>
+						<tr>
+							<th scope="row">Level</th>
+							<td><?php echo $row['level']; ?></td>
+						</tr>
+						<tr>
+							<th scope="row">Range</th>
+							<td><?php echo $row['range']; ?></td>
+						</tr>
+						<tr>
+							<th scope="row">Materials</th>
+							<td><?php echo $row['materials']; ?></td>
+						</tr>
+						<tr>
+							<th scope="row">Duration</th>
+							<td><?php echo $row['duration']; ?></td>
+						</tr>
+						<tr>
+							<th scope="row">Description</th>
+							<td><?php echo $row['long_description']; ?></td>
+						</tr>
+					</tbody>
+				</table>
 				<a class="btn btn-secondary" href="?page=page_spell_list">Back</a>
 			</div>
 		</div>

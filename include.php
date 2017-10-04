@@ -7,6 +7,8 @@ require_once('config.php');
 $DB = mysqli_connect('localhost', $DBUSERNAME, $DBPASSWORD, $DBNAME);
 
 $LOGGEDIN = false;
+
+$USERID = 0;
 $ISADMIN = false;
 $USERNAME = '';
 $USERREALNAME = '';
@@ -41,6 +43,7 @@ if (isset($_GET['log_out'])) {
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 	$LOGGEDIN = true;
+	$USERID = $_SESSION['userid'];
 	$ISADMIN = $_SESSION['admin'];
 	$USERNAME = $_SESSION['username'];
 	$USERREALNAME = $_SESSION['name'];
@@ -56,11 +59,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$LOGGEDIN = true;
+		$USERID = $row['id'];
 		$ISADMIN = $row['admin'];
 		$USERNAME = $row['username'];
 		$USERREALNAME = $row['name'];
 		
 		$_SESSION['loggedin'] = true;
+		$_SESSION['userid'] = $USERID;
 		$_SESSION['admin'] = $ISADMIN;
 		$_SESSION['username'] = $USERNAME;
 		$_SESSION['name'] = $USERREALNAME;
