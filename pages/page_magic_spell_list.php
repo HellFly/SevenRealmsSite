@@ -6,7 +6,8 @@ $query = 'SELECT spell.id, magic_school.name AS magic_school, spell.level, spell
 
 $result = mysqli_query($DB, $query);
 ?>
-
+<h1>Spell list</h1>
+<hr>
 <div class="row">
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) { ?>

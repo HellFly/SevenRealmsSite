@@ -3,7 +3,8 @@ $query = 'SELECT * FROM race';
 
 $result = mysqli_query($DB, $query);
 ?>
-
+<h1>Race list</h1>
+<hr>
 <div class="row">
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) { ?>

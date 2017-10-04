@@ -3,7 +3,8 @@ $query = 'SELECT * FROM class';
 
 $result = mysqli_query($DB, $query);
 ?>
-
+<h1>Class list</h1>
+<hr>
 <div class="row">
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) { ?>

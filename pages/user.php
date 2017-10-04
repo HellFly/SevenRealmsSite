@@ -37,7 +37,7 @@
 						<tr>
 							<td><?php echo $row['name']; ?></td>
 							<td><?php echo $row['description']; ?></td>
-							<td><a href="" class="btn btn-primary">Edit</a></td>
+							<td><a href="?page=user_list_edit&list=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
 							<td><a href="?page=user_list_detail&list=<?php echo $row['id']; ?>" class="btn btn-primary">View</a></td>
 						</tr>
 						<?php
