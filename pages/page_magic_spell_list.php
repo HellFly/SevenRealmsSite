@@ -2,7 +2,7 @@
 $query = 'SELECT spell.id, magic_school.name AS magic_school, spell.level, spell.name, spell.range, spell.materials, spell.duration, spell.short_description, spell.long_description
 	FROM spell, magic_school
 	WHERE spell.magic_school = magic_school.id
-	ORDER BY magic_school.name, spell.level;';
+	ORDER BY magic_school.name, spell.level, spell.name;';
 
 $result = mysqli_query($DB, $query);
 ?>
