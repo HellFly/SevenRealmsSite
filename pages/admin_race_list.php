@@ -1,7 +1,7 @@
 <?php
 include '_admin.php';
 
-$query = 'SELECT * FROM race';
+$query = 'SELECT * FROM race ORDER BY name;';
 
 $result = mysqli_query($DB, $query);
 ?>

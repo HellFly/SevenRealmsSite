@@ -1,7 +1,7 @@
 <?php
 include '_admin.php';
 
-$query = 'SELECT * FROM class';
+$query = 'SELECT * FROM class ORDER BY name;';
 
 $result = mysqli_query($DB, $query);
 ?>

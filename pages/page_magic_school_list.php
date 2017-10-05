@@ -1,5 +1,5 @@
 <?php
-$query = 'SELECT * FROM magic_school';
+$query = 'SELECT * FROM magic_school ORDER BY name;';
 
 $result = mysqli_query($DB, $query);
 ?>
