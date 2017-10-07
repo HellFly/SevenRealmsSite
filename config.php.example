@@ -1,5 +1,6 @@
 <?php
-$DBNAME = 'database_name';
+$DBADDRESS = 'localhost';
 $DBUSERNAME = 'username';
 $DBPASSWORD = 'password';
+$PASSWORDSALT = 'salt';
 ?>

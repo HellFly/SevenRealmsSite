@@ -4,7 +4,7 @@ if (!file_exists('config.php')) {
 }
 require_once('config.php');
 
-$DB = mysqli_connect('localhost', $DBUSERNAME, $DBPASSWORD, $DBNAME);
+$DB = mysqli_connect($DBADDRESS, $DBUSERNAME, $DBPASSWORD, $DBNAME);
 
 $LOGGEDIN = false;
 
@@ -52,9 +52,9 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 if (isset($_POST['username']) && isset($_POST['password'])) {
 	$name = $_POST['username'];
 	$pass = $_POST['password'];
-	
-	$pass = md5('saltSR2017' . $pass);
-	
+
+	$pass = md5($PASSWORDSALT . $pass);
+
 	$result = mysqli_query($DB, 'SELECT * FROM user WHERE username=\'' . $name . '\' AND password=\'' . $pass . '\';');
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
@@ -63,7 +63,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 		$ISADMIN = $row['admin'];
 		$USERNAME = $row['username'];
 		$USERREALNAME = $row['name'];
-		
+
 		$_SESSION['loggedin'] = true;
 		$_SESSION['userid'] = $USERID;
 		$_SESSION['admin'] = $ISADMIN;
