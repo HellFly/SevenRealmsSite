@@ -17,9 +17,9 @@ if (isset($_POST['name'])) {
 		if (isset($_POST['admin'])) {
 			$admin = true;
 		}
-		
-		$password = md5('saltSR2017' . $password);
-		
+
+		$password = md5($PASSWORDSALT . $password);
+
 		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $username . '\',
@@ -27,7 +27,7 @@ if (isset($_POST['name'])) {
 			\'' . $name . '\',
 			\'' . $email . '\',
 			\'' . $admin . '\');';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The user was created';
