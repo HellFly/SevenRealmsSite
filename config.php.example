@@ -1,5 +1,6 @@
 <?php
 $DBADDRESS = 'localhost';
+$DBNAME = 'seven_sevenrealms';
 $DBUSERNAME = 'username';
 $DBPASSWORD = 'password';
 $PASSWORDSALT = 'salt';
