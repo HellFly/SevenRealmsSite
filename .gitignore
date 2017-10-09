@@ -3,3 +3,4 @@
 config.php
 *.htaccess
 cgi-bin/
+migrations/migration.txt
