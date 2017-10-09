@@ -1,5 +1,5 @@
 ###############################################
 # Don't track the passwords and configuration #
 config.php
-.htaccess
+*.htaccess
 cgi-bin/
