@@ -27,7 +27,7 @@ $command = key($_GET);
 switch ($command) {
 	case 'create':
 		$current_time = time();
-		echo $MIGRATIONPATH . 'migration_' . $current_time . '.php created';
+		echo $MIGRATIONPATH . 'migration_' . $current_time . '.php created' . chr(0x0D).chr(0x0A);
 		$file = fopen($MIGRATIONPATH . 'migration_' . $current_time . '.php', 'w');
 		fwrite($file, '
 		<?php
@@ -82,7 +82,7 @@ switch ($command) {
 	case null:
 	default:
 		echo 'Usage: php ' . basename(__FILE__) . ' <action>' . chr(0x0D).chr(0x0A);
-		echo '	Actions: create, migrate';
+		echo '	Actions: create, migrate' . chr(0x0D).chr(0x0A);
 	break;
 }
 ?>
