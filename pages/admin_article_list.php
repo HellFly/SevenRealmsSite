@@ -37,7 +37,7 @@ $result = mysqli_query($DB, $query);
 										<td><?php echo $row['name']; ?></td>
 										<td><?php echo $row['title']; ?></td>
 										<td><?php echo substr($row['text'], 0, 100); ?>...</td>
-										<td><a href="?page=admin_article_edit&artce=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+										<td><a href="?page=admin_article_edit&article=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
 									</tr>
 								<?php
 							}
