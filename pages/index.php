@@ -17,8 +17,8 @@ $result = mysqli_query($DB, $query);
 					<h2 class="card-title"><?php echo $row['title']; ?></h2>
 					<hr>
 					<small>Created by <?php echo $row['name']; ?> at <?php echo $date; ?></small>
-					<p class="card-text"><?php echo $row['text'] ?></p>
-					<a class="btn btn-primary" href="index.php" role="button">Back</a>
+					<p class="card-text"><?php echo substr($row['text'], 0,200); ?>...</p>
+					<a class="btn btn-primary" href="?page=page_article&article=<?php echo $row['id']; ?>" role="button">View more</a>
 				</div>
 			</div>
 		</div>
