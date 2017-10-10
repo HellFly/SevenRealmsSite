@@ -1,5 +1,5 @@
 <?php
-$query = 'SELECT article.id AS id, user.id, article.created_at, user.name, article.title, article.text
+$query = 'SELECT article.id AS article_id, user.id, article.created_at, user.name, article.title, article.text
 	FROM article, user
 	WHERE article.created_by = user.id
 	ORDER BY article.created_at DESC';
@@ -11,14 +11,14 @@ $result = mysqli_query($DB, $query);
 	while ($row = mysqli_fetch_assoc($result)) {
 		$date = date('H:i Y-m-d', strtotime($row['created_at']));
 		?>
-		<div class="col-md-6">
+		<div class="col-md-6 mb-3">
 			<div class="card">
 				<div class="card-body">
 					<h2 class="card-title"><?php echo $row['title']; ?></h2>
 					<hr>
 					<small>Created by <?php echo $row['name']; ?> at <?php echo $date; ?></small>
 					<p class="card-text"><?php echo substr($row['text'], 0,200); ?>...</p>
-					<a class="btn btn-primary" href="?page=page_article&article=<?php echo $row['id']; ?>" role="button">View more</a>
+					<a class="btn btn-primary" href="?page=page_article&article=<?php echo $row['article_id']; ?>" role="button">View more</a>
 				</div>
 			</div>
 		</div>

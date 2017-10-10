@@ -8,6 +8,7 @@ $query = 'SELECT article.id AS id, user.id, article.created_at, user.name, artic
 
 $result = mysqli_query($DB, $query);
 $row = mysqli_fetch_assoc($result);
+$date = date('H:i Y-m-d', strtotime($row['created_at']));
 ?>
 
 <div class="row">

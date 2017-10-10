@@ -62,4 +62,16 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-6 mb-3">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Articles</h3>
+				<hr>
+				<p class="card-text">
+					<a href="?page=admin_article_list" class="btn btn-primary">View articles</a>
+					<a href="?page=admin_article_create" class="btn btn-primary">Create an article</a>
+				</p>
+			</div>
+		</div>
+	</div>
 </div>
