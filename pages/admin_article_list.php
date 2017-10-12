@@ -12,7 +12,7 @@ $result = mysqli_query($DB, $query);
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Race list</h3>
+				<h3 class="card-title">Article list</h3>
 				<hr>
 				<p class="card-text">
 					<a href="?page=admin" class="btn btn-primary">Back</a>

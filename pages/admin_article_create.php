@@ -43,7 +43,7 @@ if ($warning != '') { ?>
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Create a spell</h3>
+				<h3 class="card-title">Create an article</h3>
 				<hr>
 				<form action="" method="POST">
 					<div class="form-group">
