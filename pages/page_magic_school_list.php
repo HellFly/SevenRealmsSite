@@ -5,6 +5,7 @@ $result = mysqli_query($DB, $query);
 ?>
 <h1>Magic school list</h1>
 <hr>
+<a class="btn btn-primary mb-3" href="?page=page_magic">Back</a>
 <div class="row">
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -14,7 +15,7 @@ $result = mysqli_query($DB, $query);
 					<h3 class="card-title"><?php echo $row['name']; ?></h3>
 					<p class="card-text">
 						<?php echo $row['short_description']; ?></p>
-					<a class="btn btn-primary" href="?page=page_magic_school_detail&school_id=<?php echo $row['id']; ?>">View details &raquo;</a>
+					<a class="btn btn-primary" href="?page=page_magic_school_detail&school=<?php echo $row['id']; ?>">View details &raquo;</a>
 				</div>
 			</div>
 		</div>

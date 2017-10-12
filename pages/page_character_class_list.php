@@ -5,6 +5,7 @@ $result = mysqli_query($DB, $query);
 ?>
 <h1>Class list</h1>
 <hr>
+<a class="btn btn-primary mb-3" href="?page=page_character">Back</a>
 <div class="row">
 	<?php
 	while ($row = mysqli_fetch_assoc($result)) { ?>
