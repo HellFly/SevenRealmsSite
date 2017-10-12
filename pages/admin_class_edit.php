@@ -11,16 +11,16 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$short_description = $_POST['short_description'];
-		$long_description = $_POST['long_description'];
-		
+		$name = mysqli_real_escape_string($_POST['name']);
+		$short_description = mysqli_real_escape_string($_POST['short_description']);
+		$long_description = mysqli_real_escape_string($_POST['long_description']);
+
 		$query = 'UPDATE class
 			SET name=\'' . $name . '\',
 			short_description=\'' . $short_description . '\',
 			long_description=\'' . $long_description . '\'
 			WHERE id=' . $class . ';';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The class was updated';

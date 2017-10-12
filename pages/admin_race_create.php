@@ -9,16 +9,16 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$short_description = $_POST['short_description'];
-		$long_description = $_POST['long_description'];
-		
+		$name = mysqli_real_escape_string($_POST['name']);
+		$short_description = mysqli_real_escape_string($_POST['short_description']);
+		$long_description = mysqli_real_escape_string($_POST['long_description']);
+
 		$query = 'INSERT INTO race(`created_at`, `name`, `short_description`, `long_description`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $name . '\',
 			\'' . $short_description . '\',
 			\'' . $long_description . '\');';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The race was created';

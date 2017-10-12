@@ -11,14 +11,14 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$description = $_POST['description'];
-		
+		$name = mysqli_real_escape_string($_POST['name']);
+		$description = mysqli_real_escape_string($_POST['description']);
+
 		$query = 'UPDATE list
 			SET name=\'' . $name . '\',
 			`description`=\'' . $description . '\'
 			WHERE id=' . $list . ';';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The list was updated';

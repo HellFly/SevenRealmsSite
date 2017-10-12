@@ -9,15 +9,15 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$description = $_POST['description'];
-		
+		$name = mysqli_real_escape_string($_POST['name']);
+		$description = mysqli_real_escape_string($_POST['description']);
+
 		$query = 'INSERT INTO list(`created_at`, `created_by`, `name`, `description`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $USERID . '\',
 			\'' . $name . '\',
 			\'' . $description . '\');';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The d100 list was created';

@@ -9,9 +9,9 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$email = $_POST['email'];
-		$username = $_POST['username'];
+		$name = mysqli_real_escape_string($_POST['name']);
+		$email = mysqli_real_escape_string($_POST['email']);
+		$username = mysqli_real_escape_string($_POST['username']);
 		$password = $_POST['password'];
 		$admin = false;
 		if (isset($_POST['admin'])) {

@@ -10,21 +10,21 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$magic_school = $_POST['magic_school'];
-		$level = $_POST['level'];
+		$name = mysqli_real_escape_string($_POST['name']);
+		$magic_school = mysqli_real_escape_string($_POST['magic_school']);
+		$level = mysqli_real_escape_string($_POST['level']);
 		$range = '';
 		if (isset($_POST['range']))
-			$range = $_POST['range'];
+			$range = mysqli_real_escape_string($_POST['range']);
 		$materials = '';
 		if (isset($_POST['materials']))
-			$materials = $_POST['materials'];
+			$materials = mysqli_real_escape_string($_POST['materials']);
 		$duration = '';
 		if (isset($_POST['duration']))
-			$duration = $_POST['duration'];
-		$short_description = $_POST['short_description'];
-		$long_description = $_POST['long_description'];
-		
+			$duration = mysqli_real_escape_string($_POST['duration']);
+		$short_description = mysqli_real_escape_string($_POST['short_description']);
+		$long_description = mysqli_real_escape_string($_POST['long_description']);
+
 		$query = 'UPDATE spell
 			SET `name`=\'' . $name . '\',
 			`magic_school`=' . $magic_school . ',
@@ -35,7 +35,7 @@ if (isset($_POST['name'])) {
 			`short_description`=\'' . $short_description . '\',
 			`long_description`=\'' . $long_description . '\'
 			WHERE id=' . $spell . ';';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The spell was updated';
