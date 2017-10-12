@@ -1,7 +1,7 @@
 <?php
 include '_admin.php';
 
-$query = 'SELECT article.id AS id, user.id, article.created_at, user.name, article.title, article.text
+$query = 'SELECT article.id AS id, user.id AS uid, article.created_at, user.name, article.title, article.text
 	FROM article, user
 	WHERE article.created_by = user.id
 	ORDER BY article.created_at DESC';
