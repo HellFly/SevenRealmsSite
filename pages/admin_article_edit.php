@@ -4,7 +4,7 @@ include '_admin.php';
 $warning = '';
 $message = '';
 
-$article = $_GET['article'];
+$article = mysqli_real_escape_string($_GET['article']);
 
 if (isset($_POST['title'])) {
 	if (empty($_POST['title']) || empty($_POST['text'])) {

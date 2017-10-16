@@ -1,5 +1,5 @@
 <?php
-$race = $_GET['race'];
+$race = mysqli_real_escape_string($_GET['race']);
 
 $query = 'SELECT * FROM race
 	WHERE id = ' . $race . ';';

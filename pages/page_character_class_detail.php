@@ -1,5 +1,5 @@
 <?php
-$class = $_GET['class'];
+$class = mysqli_real_escape_string($_GET['class']);
 
 $query = 'SELECT * FROM class
 	WHERE id = ' . $class . ';';

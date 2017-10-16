@@ -4,7 +4,7 @@ include '_admin.php';
 $warning = '';
 $message = '';
 
-$class = $_GET['class'];
+$class = mysqli_real_escape_string($_GET['class']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['short_description']) || empty($_POST['long_description'])) {

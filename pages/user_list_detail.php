@@ -1,7 +1,7 @@
 <?php
 include '_user.php';
 
-$list = $_GET['list'];
+$list = mysqli_real_escape_string($_GET['list']);
 
 $warning = '';
 $message = '';

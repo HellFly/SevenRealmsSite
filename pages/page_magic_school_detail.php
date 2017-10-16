@@ -1,5 +1,5 @@
 <?php
-$school = $_GET['school'];
+$school = mysqli_real_escape_string($_GET['school']);
 
 $query = 'SELECT * FROM magic_school
 	WHERE id = ' . $school . ';';

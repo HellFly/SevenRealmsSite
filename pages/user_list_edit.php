@@ -4,7 +4,7 @@ include '_user.php';
 $warning = '';
 $message = '';
 
-$list = $_GET['list'];
+$list = mysqli_real_escape_string($_GET['list']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['description'])) {

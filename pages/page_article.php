@@ -1,5 +1,5 @@
 <?php
-$article = $_GET['article'];
+$article = $mysqli_real_escape_string(_GET['article']);
 
 $query = 'SELECT article.id AS id, user.id, article.created_at, user.name, article.title, article.text
 	FROM article, user

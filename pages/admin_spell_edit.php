@@ -3,7 +3,7 @@ include '_admin.php';
 
 $warning = '';
 $message = '';
-$spell = $_GET['spell'];
+$spell = mysqli_real_escape_string($_GET['spell']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['short_description']) || empty($_POST['long_description'])) {
