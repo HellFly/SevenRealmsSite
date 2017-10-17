@@ -14,11 +14,16 @@ if (isset($_POST['name'])) {
 		$name = mysqli_real_escape_string($DB, $_POST['name']);
 		$email = mysqli_real_escape_string($DB, $_POST['email']);
 		$username = mysqli_real_escape_string($DB, $_POST['username']);
+		$admin = 0;
+		if (isset($_POST['admin'])) {
+			$admin = 1;
+		}
 
 		$query = 'UPDATE user
 			SET name=\'' . $name . '\',
 			email=\'' . $email . '\',
-			username=\'' . $username . '\'
+			username=\'' . $username . '\',
+			admin=\'' . $admin . '\'
 			WHERE id=' . $user . ';';
 
 		$success = mysqli_query($DB, $query);
