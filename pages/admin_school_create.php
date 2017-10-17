@@ -9,9 +9,9 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = mysqli_real_escape_string($_POST['name']);
-		$short_description = mysqli_real_escape_string($_POST['short_description']);
-		$long_description = mysqli_real_escape_string($_POST['long_description']);
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$short_description = mysqli_real_escape_string($DB, $_POST['short_description']);
+		$long_description = mysqli_real_escape_string($DB, $_POST['long_description']);
 
 		$query = 'INSERT INTO magic_school(`created_at`, `name`, `short_description`, `long_description`)
 			VALUES (\'' . get_datetime() . '\',

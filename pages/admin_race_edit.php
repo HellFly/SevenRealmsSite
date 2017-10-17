@@ -4,16 +4,16 @@ include '_admin.php';
 $warning = '';
 $message = '';
 
-$race = mysqli_real_escape_string($_GET['race']);
+$race = mysqli_real_escape_string($DB, $_GET['race']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['short_description']) || empty($_POST['long_description'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = mysqli_real_escape_string($_POST['name']);
-		$short_description = mysqli_real_escape_string($_POST['short_description']);
-		$long_description = mysqli_real_escape_string($_POST['long_description']);
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$short_description = mysqli_real_escape_string($DB, $_POST['short_description']);
+		$long_description = mysqli_real_escape_string($DB, $_POST['long_description']);
 
 		$query = 'UPDATE race
 			SET name=\'' . $name . '\',

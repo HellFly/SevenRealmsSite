@@ -9,14 +9,14 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = mysqli_real_escape_string($_POST['name']);
-		$magic_school = mysqli_real_escape_string($_POST['magic_school']);
-		$level = mysqli_real_escape_string($_POST['level']);
-		$range = mysqli_real_escape_string($_POST['range']);
-		$materials = mysqli_real_escape_string($_POST['materials']);
-		$duration = mysqli_real_escape_string($_POST['duration']);
-		$short_description = mysqli_real_escape_string($_POST['short_description']);
-		$long_description = mysqli_real_escape_string($_POST['long_description']);
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$magic_school = mysqli_real_escape_string($DB, $_POST['magic_school']);
+		$level = mysqli_real_escape_string($DB, $_POST['level']);
+		$range = mysqli_real_escape_string($DB, $_POST['range']);
+		$materials = mysqli_real_escape_string($DB, $_POST['materials']);
+		$duration = mysqli_real_escape_string($DB, $_POST['duration']);
+		$short_description = mysqli_real_escape_string($DB, $_POST['short_description']);
+		$long_description = mysqli_real_escape_string($DB, $_POST['long_description']);
 
 		$query = 'INSERT INTO spell(`created_at`, `name`, `magic_school`, `level`, `range`, `materials`, `duration`, `short_description`, `long_description`)
 			VALUES (\'' . get_datetime() . '\',

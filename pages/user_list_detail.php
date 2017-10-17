@@ -1,7 +1,7 @@
 <?php
 include '_user.php';
 
-$list = mysqli_real_escape_string($_GET['list']);
+$list = mysqli_real_escape_string($DB, $_GET['list']);
 
 $warning = '';
 $message = '';
@@ -11,8 +11,8 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = mysqli_real_escape_string($_POST['name']);
-		$description = mysqli_real_escape_string($_POST['description']);
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$description = mysqli_real_escape_string($DB, $_POST['description']);
 
 		$query = 'INSERT INTO list_item(`created_at`, `list_id`, `name`, `description`)
 			VALUES (\'' . get_datetime() . '\',

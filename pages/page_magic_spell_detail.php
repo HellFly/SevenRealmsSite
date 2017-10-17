@@ -1,5 +1,5 @@
 <?php
-$spell = mysqli_real_escape_string($_GET['spell']);
+$spell = mysqli_real_escape_string($DB, $_GET['spell']);
 
 $query = 'SELECT spell.id, magic_school.name AS magic_school, spell.level, spell.name, spell.range, spell.materials, spell.duration, spell.short_description, spell.long_description
 	FROM spell, magic_school
