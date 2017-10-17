@@ -36,7 +36,7 @@ $query = 'SELECT * FROM user WHERE id=' . $user . ';';
 
 $result = mysqli_query($DB, $query);
 $row = mysqli_fetch_assoc($result);
-var_dump($user);
+
 if ($message != '') { ?>
 	<div class="alert alert-success" role="alert">
 		<?php echo $message; ?>
