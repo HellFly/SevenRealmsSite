@@ -4,39 +4,43 @@ include '_admin.php';
 $warning = '';
 $message = '';
 
+$user = mysqli_real_escape_string($DB, $_GET['user']);
+
 if (isset($_POST['name'])) {
-	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['username']) || empty($_POST['password'])) {
+	if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['username'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
 		$name = mysqli_real_escape_string($DB, $_POST['name']);
 		$email = mysqli_real_escape_string($DB, $_POST['email']);
 		$username = mysqli_real_escape_string($DB, $_POST['username']);
-		$password = $_POST['password'];
-		$admin = false;
+		$admin = 0;
 		if (isset($_POST['admin'])) {
-			$admin = true;
+			$admin = 1;
 		}
 
-		$password = md5($PASSWORDSALT . $password);
-
-		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`)
-			VALUES (\'' . get_datetime() . '\',
-			\'' . $username . '\',
-			\'' . $password . '\',
-			\'' . $name . '\',
-			\'' . $email . '\',
-			\'' . $admin . '\');';
+		$query = 'UPDATE user
+			SET name=\'' . $name . '\',
+			email=\'' . $email . '\',
+			username=\'' . $username . '\',
+			admin=\'' . $admin . '\'
+			WHERE id=' . $user . ';';
 
 		$success = mysqli_query($DB, $query);
 		if ($success) {
-			$message = 'The user was created';
+			$message = 'The user was updated';
 		}
 		else {
 			$warning = mysqli_error($DB);
 		}
 	}
 }
+
+
+$query = 'SELECT * FROM user WHERE id=' . $user . ';';
+
+$result = mysqli_query($DB, $query);
+$row = mysqli_fetch_assoc($result);
 
 if ($message != '') { ?>
 	<div class="alert alert-success" role="alert">
@@ -53,33 +57,33 @@ if ($warning != '') { ?>
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Create a user</h3>
+				<h3 class="card-title">Edit a user</h3>
 				<hr>
 				<form action="" method="POST">
 					<div class="form-group">
 						<label for="name">Name</label>
-						<input class="form-control" name="name" type="text"></input>
+						<input class="form-control" name="name" type="text" value="<?php echo $row['name']; ?>"></input>
 					</div>
 					<div class="form-group">
 						<label for="email">Email</label>
-						<input class="form-control" name="email" type="email"></input>
+						<input class="form-control" name="email" type="email" value="<?php echo $row['email']; ?>"></input>
 					</div>
 					<div class="form-group">
 						<label for="username">Username</label>
-						<input class="form-control" name="username" type="text"></input>
+						<input class="form-control" name="username" type="text" value="<?php echo $row['username']; ?>"></input>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input class="form-control" name="password" type="password"></input>
+						<input class="form-control" name="password" type="password" readonly value="**********"></input>
 					</div>
 					<div class="form-check">
 						<label class="form-check-label">
-							<input class="form-check-input" name="admin" type="checkbox" />
+							<input class="form-check-input" name="admin" type="checkbox" <?php if ($row['admin'] == '1') { echo 'checked'; } ?>/>
 							Admin
 						</label>
 					</div>
-					<a href="?page=admin" class="btn btn-primary">Back</a>
-					<button type="submit" class="btn btn-primary">Create</button>
+					<a href="?page=admin_user_list" class="btn btn-primary">Back</a>
+					<button type="submit" class="btn btn-primary">Update</button>
 				</form>
 			</div>
 		</div>

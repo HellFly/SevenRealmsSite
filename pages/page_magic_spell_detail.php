@@ -1,9 +1,9 @@
 <?php
-$spell_id = $_GET['spell_id'];
+$spell = mysqli_real_escape_string($DB, $_GET['spell']);
 
 $query = 'SELECT spell.id, magic_school.name AS magic_school, spell.level, spell.name, spell.range, spell.materials, spell.duration, spell.short_description, spell.long_description
 	FROM spell, magic_school
-	WHERE spell.id = ' . $spell_id . '
+	WHERE spell.id = ' . $spell . '
 		AND spell.magic_school = magic_school.id
 	ORDER BY magic_school.name, spell.level;';
 

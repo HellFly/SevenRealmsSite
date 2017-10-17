@@ -9,15 +9,15 @@ if (isset($_POST['name'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$magic_school = $_POST['magic_school'];
-		$level = $_POST['level'];
-		$range = $_POST['range'];
-		$materials = $_POST['materials'];
-		$duration = $_POST['duration'];
-		$short_description = $_POST['short_description'];
-		$long_description = $_POST['long_description'];
-		
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$magic_school = mysqli_real_escape_string($DB, $_POST['magic_school']);
+		$level = mysqli_real_escape_string($DB, $_POST['level']);
+		$range = mysqli_real_escape_string($DB, $_POST['range']);
+		$materials = mysqli_real_escape_string($DB, $_POST['materials']);
+		$duration = mysqli_real_escape_string($DB, $_POST['duration']);
+		$short_description = mysqli_real_escape_string($DB, $_POST['short_description']);
+		$long_description = mysqli_real_escape_string($DB, $_POST['long_description']);
+
 		$query = 'INSERT INTO spell(`created_at`, `name`, `magic_school`, `level`, `range`, `materials`, `duration`, `short_description`, `long_description`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $name . '\',
@@ -28,7 +28,7 @@ if (isset($_POST['name'])) {
 			\'' . $duration . '\',
 			\'' . $short_description . '\',
 			\'' . $long_description . '\');';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The spell was created';

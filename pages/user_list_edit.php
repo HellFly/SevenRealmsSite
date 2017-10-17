@@ -4,21 +4,21 @@ include '_user.php';
 $warning = '';
 $message = '';
 
-$list = $_GET['list'];
+$list = mysqli_real_escape_string($DB, $_GET['list']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['description'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$description = $_POST['description'];
-		
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$description = mysqli_real_escape_string($DB, $_POST['description']);
+
 		$query = 'UPDATE list
 			SET name=\'' . $name . '\',
 			`description`=\'' . $description . '\'
 			WHERE id=' . $list . ';';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The list was updated';

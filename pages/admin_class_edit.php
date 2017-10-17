@@ -4,23 +4,23 @@ include '_admin.php';
 $warning = '';
 $message = '';
 
-$class = $_GET['class'];
+$class = mysqli_real_escape_string($DB, $_GET['class']);
 
 if (isset($_POST['name'])) {
 	if (empty($_POST['name']) || empty($_POST['short_description']) || empty($_POST['long_description'])) {
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$short_description = $_POST['short_description'];
-		$long_description = $_POST['long_description'];
-		
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$short_description = mysqli_real_escape_string($DB, $_POST['short_description']);
+		$long_description = mysqli_real_escape_string($DB, $_POST['long_description']);
+
 		$query = 'UPDATE class
 			SET name=\'' . $name . '\',
 			short_description=\'' . $short_description . '\',
 			long_description=\'' . $long_description . '\'
 			WHERE id=' . $class . ';';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The class was updated';
