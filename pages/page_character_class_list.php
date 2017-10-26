@@ -1,4 +1,6 @@
 <?php
+$meta_description = 'A list of all of the classes available in the Seven Realms game.';
+
 $query = 'SELECT * FROM class ORDER BY name;';
 
 $result = mysqli_query($DB, $query);

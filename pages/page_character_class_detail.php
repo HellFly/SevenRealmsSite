@@ -1,4 +1,6 @@
 <?php
+$meta_description = '';
+
 $class = mysqli_real_escape_string($DB, $_GET['class']);
 
 $query = 'SELECT * FROM class

@@ -1,4 +1,6 @@
 <?php
+$meta_description = 'A list of all of the races available in the Seven Realms game.';
+
 $query = 'SELECT * FROM race ORDER BY name;';
 
 $result = mysqli_query($DB, $query);

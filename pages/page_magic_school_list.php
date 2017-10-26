@@ -1,4 +1,6 @@
 <?php
+$meta_description = 'A list of all of the magic schools in the Seven Realms game\'s magic system';
+
 $query = 'SELECT * FROM magic_school ORDER BY name;';
 
 $result = mysqli_query($DB, $query);

@@ -1,4 +1,6 @@
 <?php
+$meta_description = 'Welcome to the home page of the Seven Realms game. You can find all of the available information on this site.';
+
 $query = 'SELECT article.id AS article_id, user.id, article.created_at, user.name, article.title, article.text
 	FROM article, user
 	WHERE article.created_by = user.id
