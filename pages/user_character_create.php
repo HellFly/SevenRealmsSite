@@ -11,13 +11,13 @@ $message = '';
 	else {
 		$name = $_POST['name'];
 		$description = $_POST['description'];
-		
+
 		$query = 'INSERT INTO list(`created_at`, `created_by`, `name`, `description`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $USERID . '\',
 			\'' . $name . '\',
 			\'' . $description . '\');';
-		
+
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The character was created';
@@ -47,31 +47,68 @@ if ($warning != '') { ?>
 				<hr>
 				<form action="" method="POST">
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="character_name" class="col-form-label">Character name</label>
-							<input class="form-control" name="character_name" type="text"></input>
+						<div class="form-group col">
+							<label for="name" class="col-form-label">Character name</label>
+							<input class="form-control" name="name" type="text"></input>
 						</div>
-						<div class="form-group col-md-6">
-							<label for="player_name" class="col-form-label">Player name</label>
-							<input class="form-control" name="player_name" type="text"></input>
+						<div class="form-group col">
+							<label for="race" class="col-form-label">Race</label>
+							<select class="form-control" name="race">
+							<?php
+							$query = 'SELECT * FROM race';
+							$result = mysqli_query($DB, $query);
+							while ($row = mysqli_fetch_assoc($result)) {
+							?>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+							<?php } ?>
+							</select>
+						</div>
+						<div class="form-group col">
+							<label for="class" class="col-form-label">Class</label>
+							<select class="form-control" name="class">
+							<?php
+							$query = 'SELECT * FROM class';
+							$result = mysqli_query($DB, $query);
+							while ($row = mysqli_fetch_assoc($result)) {
+							?>
+								<option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
+							<?php } ?>
+							</select>
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-3">
-							<label for="character_name" class="col-form-label">Race</label>
-							<input class="form-control" name="character_name" type="text"></input>
+						<div class="form-group col">
+							<label for="gender" class="col-form-label">Gender</label>
+							<select class="form-control" name="gender">
+								<option value="M">M</option>
+								<option value="F">F</option>
+							</select>
 						</div>
-						<div class="form-group col-md-3">
-							<label for="player_name" class="col-form-label">Class</label>
-							<input class="form-control" name="player_name" type="text"></input>
+						<div class="form-group col">
+							<label for="age" class="col-form-label">Age</label>
+							<input class="form-control" name="age" type="number" value="18"></input>
 						</div>
-						<div class="form-group col-md-3">
-							<label for="player_name" class="col-form-label">Gender</label>
-							<input class="form-control" name="player_name" type="text"></input>
+						<div class="form-group col">
+							<label for="size" class="col-form-label">Size</label>
+							<select class="form-control" name="size">
+								<option value="S">S</option>
+								<option value="M" selected>M</option>
+								<option value="L">L</option>
+							</select>
 						</div>
-						<div class="form-group col-md-3">
-							<label for="player_name" class="col-form-label">Alignment</label>
-							<input class="form-control" name="player_name" type="text"></input>
+					</div>
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="alignment" class="col-form-label">Alignment</label>
+							<input class="form-control" name="alignment" type="text"></input>
+						</div>
+						<div class="form-group col">
+							<label for="homeland" class="col-form-label">Homeland</label>
+							<input class="form-control" name="homeland" type="text"></input>
+						</div>
+						<div class="form-group col">
+							<label for="deity" class="col-form-label">Deity</label>
+							<input class="form-control" name="deity" type="text"></input>
 						</div>
 					</div>
 					<div class="form-row">
@@ -81,27 +118,45 @@ if ($warning != '') { ?>
 						</div>
 						<div class="form-group col">
 							<label for="stat_cha" class="col-form-label">Charisma</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_cha" type="number" value="1"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_int" class="col-form-label">Inteligence</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_int" type="number" value="1"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_lck" class="col-form-label">Luck</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_lck" type="number" value="1"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_sta" class="col-form-label">Stamina</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_sta" type="number" value="1"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_str" class="col-form-label">Strength</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_str" type="number" value="1"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_wis" class="col-form-label">Wisdom</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_wis" type="number" value="1"></input>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="bonus_save" class="col-form-label">Save bonus</label>
+							<input class="form-control" name="bonus_save" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_attack" class="col-form-label">Attack bonus</label>
+							<input class="form-control" name="bonus_attack" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_defence" class="col-form-label">Defence bonus</label>
+							<input class="form-control" name="bonus_defence" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_initiative" class="col-form-label">Initiative bonus</label>
+							<input class="form-control" name="bonus_initiative" type="number" value="0"></input>
 						</div>
 					</div>
 					<a href="?page=user" class="btn btn-primary">Back</a>
