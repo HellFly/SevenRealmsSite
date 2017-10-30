@@ -114,31 +114,31 @@ if ($warning != '') { ?>
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="stat_agi" class="col-form-label">Agility</label>
-							<input class="form-control" name="stat_agi" type="number" value="1"></input>
+							<input class="form-control" name="stat_agi" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_cha" class="col-form-label">Charisma</label>
-							<input class="form-control" name="stat_cha" type="number" value="1"></input>
+							<input class="form-control" name="stat_cha" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_int" class="col-form-label">Inteligence</label>
-							<input class="form-control" name="stat_int" type="number" value="1"></input>
+							<input class="form-control" name="stat_int" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_lck" class="col-form-label">Luck</label>
-							<input class="form-control" name="stat_lck" type="number" value="1"></input>
+							<input class="form-control" name="stat_lck" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_sta" class="col-form-label">Stamina</label>
-							<input class="form-control" name="stat_sta" type="number" value="1"></input>
+							<input class="form-control" name="stat_sta" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_str" class="col-form-label">Strength</label>
-							<input class="form-control" name="stat_str" type="number" value="1"></input>
+							<input class="form-control" name="stat_str" type="number" value="10"></input>
 						</div>
 						<div class="form-group col">
 							<label for="stat_wis" class="col-form-label">Wisdom</label>
-							<input class="form-control" name="stat_wis" type="number" value="1"></input>
+							<input class="form-control" name="stat_wis" type="number" value="10"></input>
 						</div>
 					</div>
 					<div class="form-row">
