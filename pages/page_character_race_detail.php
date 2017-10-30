@@ -1,4 +1,6 @@
 <?php
+$meta_description = '';
+
 $race = mysqli_real_escape_string($DB, $_GET['race']);
 
 $query = 'SELECT * FROM race

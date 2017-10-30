@@ -1,4 +1,6 @@
 <?php
+$meta_description = '';
+
 $spell = mysqli_real_escape_string($DB, $_GET['spell']);
 
 $query = 'SELECT spell.id, magic_school.name AS magic_school, spell.level, spell.name, spell.range, spell.materials, spell.duration, spell.short_description, spell.long_description

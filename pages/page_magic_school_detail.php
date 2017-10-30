@@ -1,4 +1,6 @@
 <?php
+$meta_description = '';
+
 $school = mysqli_real_escape_string($DB, $_GET['school']);
 
 $query = 'SELECT * FROM magic_school

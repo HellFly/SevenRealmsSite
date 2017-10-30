@@ -1,3 +1,6 @@
+<?php
+$meta_description = '';
+?>
 <div class="row mb-3">
 	<div class="col-md">
 		<div class="card">
