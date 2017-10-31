@@ -6,21 +6,29 @@ $character = mysqli_real_escape_string($DB, $_GET['character']);
 $query = 'SELECT user_character.id, user_character.name, class.name AS class, race.name AS race,
 		stat_agi, stat_cha, stat_int, stat_lck, stat_sta, stat_str, stat_wis
 	FROM user_character, class, race
-	WHERE user_character.created_by=' . $USERID . '
+	WHERE user_character.id=' . $character . '
 	AND user_character.class = class.id
 	AND user_character.race = race.id
 	ORDER BY user_character.name;';
 
 $result = mysqli_query($DB, $query);
 $row = mysqli_fetch_assoc($result);
-var_dump($row);
+//var_dump($row);
 ?>
-
-<table class="table table-border">
+<h1>Character: <?php echo $row['name']; ?></h1>
+<a href="?page=user" class="btn btn-primary">Back</a>
+<table class="table borderless">
 	<tbody>
 		<tr>
 			<td class="col-md-4">
 				<table class="table">
+					<thead class="thead-inverse">
+						<tr>
+							<th colspan="3">
+								Stats
+							</th>
+						</tr>
+					</thead>
 					<tbody>
 						<tr>
 							<td>AGI</td>
@@ -61,15 +69,14 @@ var_dump($row);
 				</table>
 			</td>
 			<td class="col-md-4">
-				<table class="table" style="height: 100%">
+				<table class="table table-sm" style="height: 100%">
 					<tbody>
 						<tr>
 							<td>
-								<table class="table">
-									<thead>
+								<table class="table table-sm table-bordered">
+									<thead class="thead-inverse">
 										<tr>
-											<th>lvl</th>
-											<th>xp</th>
+											<th colspan="2">Level</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -77,21 +84,28 @@ var_dump($row);
 											<td>1</td>
 											<td>100</td>
 										</tr>
+										<tr>
+											<td>Lvl</td>
+											<td>XP</td>
+										</tr>
 									</tbody>
 								</table>
 							</td>
 							<td>
-								<table class="table">
-									<thead>
+								<table class="table table-sm table-bordered">
+									<thead class="thead-inverse">
 										<tr>
-											<th>hd</th>
-											<th>hp</th>
+											<th colspan="2">Health</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>d6</td>
 											<td>6</td>
+										</tr>
+										<tr>
+											<td>HD</td>
+											<td>HP</td>
 										</tr>
 									</tbody>
 								</table>
@@ -111,6 +125,11 @@ var_dump($row);
 		<tr>
 			<td>
 				<table class="table table-sm table-hover">
+					<thead class="thead-inverse">
+						<tr>
+							<th colspan="7">Skills</th>
+						</tr>
+					</thead>
 					<tbody>
 						<tr>
 							<td>Acrobatics</td>
@@ -313,3 +332,4 @@ var_dump($row);
 		</tr>
 	</tbody>
 </table>
+<a href="?page=user" class="btn btn-primary">Back</a>
