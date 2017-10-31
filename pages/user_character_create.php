@@ -80,8 +80,8 @@ if ($warning != '') { ?>
 						<div class="form-group col">
 							<label for="gender" class="col-form-label">Gender</label>
 							<select class="form-control" name="gender">
-								<option value="M">M</option>
-								<option value="F">F</option>
+								<option value="0">M</option>
+								<option value="1">F</option>
 							</select>
 						</div>
 						<div class="form-group col">
@@ -91,9 +91,9 @@ if ($warning != '') { ?>
 						<div class="form-group col">
 							<label for="size" class="col-form-label">Size</label>
 							<select class="form-control" name="size">
-								<option value="S">S</option>
-								<option value="M" selected>M</option>
-								<option value="L">L</option>
+								<option value="0">S</option>
+								<option value="1" selected>M</option>
+								<option value="2">L</option>
 							</select>
 						</div>
 					</div>
