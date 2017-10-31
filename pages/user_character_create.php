@@ -4,19 +4,70 @@ include '_user.php';
 $warning = '';
 $message = '';
 
-/*if (isset($_POST['name'])) {
-	if (empty($_POST['name']) || empty($_POST['description'])) {
+if (isset($_POST['name'])) {
+	if (empty($_POST['name'])){ /* || empty($_POST['race']) || empty($_POST['class'])
+		|| empty($_POST['gender']) || empty($_POST['age']) || empty($_POST['size'])
+		|| empty($_POST['hp_dice']) || empty($_POST['alignment']) || empty($_POST['homeland'])
+		|| empty($_POST['deity']) || empty($_POST['stat_agi']) || empty($_POST['stat_cha'])
+		|| empty($_POST['stat_int']) || empty($_POST['stat_lck']) || empty($_POST['stat_sta'])
+		|| empty($_POST['stat_str']) || empty($_POST['stat_wis']) || empty($_POST['bonus_save'])
+		|| empty($_POST['bonus_attack']) || empty($_POST['bonus_defence'])
+		|| empty($_POST['bonus_initiative'])) { */
 		$warning = 'Please fill in all the fields';
 	}
 	else {
-		$name = $_POST['name'];
-		$description = $_POST['description'];
+		$name = mysqli_real_escape_string($DB, $_POST['name']);
+		$race = mysqli_real_escape_string($DB, $_POST['race']);
+		$class = mysqli_real_escape_string($DB, $_POST['class']);
+		$gender = mysqli_real_escape_string($DB, $_POST['gender']);
+		$age = mysqli_real_escape_string($DB, $_POST['age']);
+		$size = mysqli_real_escape_string($DB, $_POST['size']);
+		$hp_dice = mysqli_real_escape_string($DB, $_POST['hp_dice']);
+		$alignment = mysqli_real_escape_string($DB, $_POST['alignment']);
+		$homeland = mysqli_real_escape_string($DB, $_POST['homeland']);
+		$deity = mysqli_real_escape_string($DB, $_POST['deity']);
+		$stat_agi = mysqli_real_escape_string($DB, $_POST['stat_agi']);
+		$stat_cha = mysqli_real_escape_string($DB, $_POST['stat_cha']);
+		$stat_int = mysqli_real_escape_string($DB, $_POST['stat_int']);
+		$stat_lck = mysqli_real_escape_string($DB, $_POST['stat_lck']);
+		$stat_sta = mysqli_real_escape_string($DB, $_POST['stat_sta']);
+		$stat_str = mysqli_real_escape_string($DB, $_POST['stat_str']);
+		$stat_wis = mysqli_real_escape_string($DB, $_POST['stat_wis']);
+		$bonus_save = mysqli_real_escape_string($DB, $_POST['bonus_save']);
+		$bonus_attack = mysqli_real_escape_string($DB, $_POST['bonus_attack']);
+		$bonus_defence = mysqli_real_escape_string($DB, $_POST['bonus_defence']);
+		$bonus_initiative = mysqli_real_escape_string($DB, $_POST['bonus_initiative']);
 
-		$query = 'INSERT INTO list(`created_at`, `created_by`, `name`, `description`)
-			VALUES (\'' . get_datetime() . '\',
-			\'' . $USERID . '\',
+		$query = 'INSERT INTO user_character(`created_by`, `created_at`, `name`,
+			`level`, `class`, `race`, `gender`, `age`, `size`, `alignment`,
+			`homeland`, `deity`, `hp_dice`, `hp`, `stat_agi`, `stat_cha`,
+			`stat_int`, `stat_lck`, `stat_sta`, `stat_str`, `stat_wis`, `bonus_save`,
+			`bonus_attack`, `bonus_defence`, `bonus_initiative`)
+			VALUES (\'' . $USERID . '\',
+			\'' . get_datetime() . '\',
 			\'' . $name . '\',
-			\'' . $description . '\');';
+			\'1\',
+			\'' . $class . '\',
+			\'' . $race . '\',
+			\'' . $gender . '\',
+			\'' . $age . '\',
+			\'' . $size . '\',
+			\'' . $alignment . '\',
+			\'' . $homeland . '\',
+			\'' . $deity . '\',
+			\'' . $hp_dice . '\',
+			\'' . $hp_dice . '\',
+			\'' . $stat_agi . '\',
+			\'' . $stat_cha . '\',
+			\'' . $stat_int . '\',
+			\'' . $stat_lck . '\',
+			\'' . $stat_sta . '\',
+			\'' . $stat_str . '\',
+			\'' . $stat_wis . '\',
+			\'' . $bonus_save . '\',
+			\'' . $bonus_attack . '\',
+			\'' . $bonus_defence . '\',
+			\'' . $bonus_initiative . '\');';
 
 		$success = mysqli_query($DB, $query);
 		if ($success) {
@@ -26,7 +77,7 @@ $message = '';
 			$warning = mysqli_error($DB);
 		}
 	}
-}*/
+}
 
 if ($message != '') { ?>
 	<div class="alert alert-success" role="alert">
@@ -109,15 +160,36 @@ if ($warning != '') { ?>
 					<div class="form-row">
 						<div class="form-group col">
 							<label for="alignment" class="col-form-label">Alignment</label>
-							<input class="form-control" name="alignment" type="text"></input>
+							<select class="form-control" name="alignment">
+								<option value="0">Lawful good</option>
+								<option value="1">Neutral good</option>
+								<option value="2">Chaotic good</option>
+								<option value="3">Lawful neutral</option>
+								<option value="4">True neutral</option>
+								<option value="5" selected>Chaotic neutral</option>
+								<option value="6">Lawful evil</option>
+								<option value="7">Neutral evil</option>
+								<option value="8">Chaotic evil</option>
+							</select>
 						</div>
 						<div class="form-group col">
 							<label for="homeland" class="col-form-label">Homeland</label>
-							<input class="form-control" name="homeland" type="text"></input>
+							<select class="form-control" name="homeland">
+								<option value="0">Ashèan</option>
+								<option value="1">Lathian</option>
+								<option value="2">Libidine</option>
+								<option value="3">Library</option>
+								<option value="4">Solidian</option>
+								<option value="5">Swamps</option>
+								<option value="6">Tundra</option>
+							</select>
 						</div>
 						<div class="form-group col">
 							<label for="deity" class="col-form-label">Deity</label>
-							<input class="form-control" name="deity" type="text"></input>
+							<select class="form-control" name="deity">
+								<option value="0">Deity 1</option>
+								<option value="1">Deity 2</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-row">
