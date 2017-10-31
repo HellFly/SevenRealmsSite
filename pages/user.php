@@ -7,7 +7,7 @@
 		<div class="card-body">
 			<h3 class="card-title">My characters</h3>
 			<?php
-			$query = 'SELECT user_character.name AS name, class.name AS class, race.name AS race
+			$query = 'SELECT user_character.id AS id, user_character.name AS name, class.name AS class, race.name AS race
 				FROM user_character, class, race
 				WHERE user_character.created_by=' . $USERID . '
 				AND user_character.class = class.id
@@ -31,8 +31,8 @@
 						<tr>
 							<td><?php echo $row['name']; ?></td>
 							<td><?php echo $row['race'] . ' ' . $row['class']; ?></td>
-							<td><a href="?page=user_character_edit&list=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
-							<td><a href="?page=user_character__detail&list=<?php echo $row['id']; ?>" class="btn btn-primary">View</a></td>
+							<td><a href="?page=user_character_edit&character=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+							<td><a href="?page=user_character_detail&character=<?php echo $row['id']; ?>" class="btn btn-primary">View</a></td>
 						</tr>
 						<?php
 					}

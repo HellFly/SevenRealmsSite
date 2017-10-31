@@ -22,6 +22,17 @@ function get_datetime() {
 	return date('Y-m-d H:i:s');
 }
 
+function get_modifier($score) {
+	if ($score >= 10) {
+		$score -= 10;
+		return floor($score/2);
+	}
+	else {
+		$rest = 10 - $score;
+		return -ceil($rest/2);
+	}
+}
+
 if (isset($_GET['hide'])) {
 	setcookie('jumbotron', 1);
 	$SHOW_JUMBOTRON = false;
