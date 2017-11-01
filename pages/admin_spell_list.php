@@ -26,6 +26,7 @@ $result = mysqli_query($DB, $query);
 								<th>Name</th>
 								<th>Short description</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,6 +41,7 @@ $result = mysqli_query($DB, $query);
 										<td><?php echo $row['name']; ?></td>
 										<td><?php echo $row['short_description']; ?></td>
 										<td><a href="?page=admin_spell_edit&spell=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+										<td><a href="?page=admin_delete&back=admin_spell_list&item=spell&id=<?php echo $row['id']; ?>" class="btn btn-primary">Delete</a></td>
 									</tr>
 								<?php
 							}

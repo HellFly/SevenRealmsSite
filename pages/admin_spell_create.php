@@ -89,7 +89,7 @@ if ($warning != '') { ?>
 					</div>
 					<div class="form-group">
 						<label for="duration">Duration</label>
-						<input class="form-control" name="rudation" type="text"></input>
+						<input class="form-control" name="duration" type="text"></input>
 					</div>
 					<div class="form-group">
 						<label for="short_description">Short description</label>

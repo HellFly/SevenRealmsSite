@@ -21,6 +21,7 @@ $result = mysqli_query($DB, $query);
 								<th>Name</th>
 								<th>Short description</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -33,6 +34,7 @@ $result = mysqli_query($DB, $query);
 										<td><?php echo $row['name']; ?></td>
 										<td><?php echo $row['short_description']; ?></td>
 										<td><a href="?page=admin_race_edit&race=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+										<td><a href="?page=admin_delete&back=admin_race_list&item=race&id=<?php echo $row['id']; ?>" class="btn btn-primary">Delete</a></td>
 									</tr>
 								<?php
 							}

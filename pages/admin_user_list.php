@@ -23,6 +23,7 @@ $result = mysqli_query($DB, $query);
 								<th>Email</th>
 								<th>Admin</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -38,6 +39,7 @@ $result = mysqli_query($DB, $query);
 										<td><?php echo $row['email']; ?></td>
 										<td><?php echo ($row['admin'] ? 'Yes' : 'No'); ?></td>
 										<td><a href="?page=admin_user_edit&user=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
+										<td><a href="?page=admin_delete&back=admin_user_list&item=user&id=<?php echo $row['id']; ?>" class="btn btn-primary">Delete</a></td>
 									</tr>
 								<?php
 							}
