@@ -4,12 +4,12 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="{{meta_description}}">
-		
+
 		<link rel="icon" href="img/favicon.png">
-		
+
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/custom.css" rel="stylesheet">
-		
+
 		<title>Seven Realms</title>
 	</head>
 	<body>
@@ -19,7 +19,7 @@
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				
+
 				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item<?php if ($PAGE == 'index') { echo ' active'; } ?>">
@@ -61,9 +61,10 @@
 				</div>
 			</div>
 		</nav>
-		
+
 		<?php
-		if ($SHOW_JUMBOTRON == true) { ?>
+		//if ($SHOW_JUMBOTRON == true) {
+		if (false) { ?>
 		<div class="jumbotron mb-0">
 			<div class="container">
 				<h1 class="display-3">Hello, world!</h1>
@@ -73,9 +74,9 @@
 		</div>
 		<?php
 		} ?>
-		
+
 		<div class="container mt-3">
-			
+
 			{{content}}
 
 			<hr>
@@ -84,7 +85,7 @@
 				<p>&copy; Seven Realms Game 2017</p>
 			</footer>
 		</div>
-		
+
 		<script src="js/jquery-3.2.1.slim.min.js"></script>
 		<script src="js/popper.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
