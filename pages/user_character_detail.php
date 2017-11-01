@@ -5,7 +5,8 @@ $character = mysqli_real_escape_string($DB, $_GET['character']);
 
 $query = 'SELECT user_character.id, user_character.name, class.name AS class, race.name AS race,
 		stat_agi, stat_cha, stat_int, stat_lck, stat_sta, stat_str, stat_wis,
-		bonus_save, bonus_attack, bonus_defence, bonus_initiative
+		bonus_save, bonus_attack, bonus_defence, bonus_initiative, size,
+		level, hp, hp_dice
 	FROM user_character, class, race
 	WHERE user_character.id=' . $character . '
 	AND user_character.class = class.id
@@ -22,7 +23,7 @@ $row = mysqli_fetch_assoc($result);
 	<tbody>
 		<tr>
 			<td class="col-md-4">
-				<table class="table">
+				<table class="table table-sm">
 					<thead class="thead-inverse">
 						<tr>
 							<th colspan="3">
@@ -82,12 +83,12 @@ $row = mysqli_fetch_assoc($result);
 									</thead>
 									<tbody>
 										<tr>
-											<td>1</td>
-											<td>100</td>
+											<td class="text-center"><?php echo $row['level']; ?></td>
+											<td class="text-center">x</td>
 										</tr>
 										<tr>
-											<td>Lvl</td>
-											<td>XP</td>
+											<td class="text-center">Lvl</td>
+											<td class="text-center">XP</td>
 										</tr>
 									</tbody>
 								</table>
@@ -101,12 +102,12 @@ $row = mysqli_fetch_assoc($result);
 									</thead>
 									<tbody>
 										<tr>
-											<td>d6</td>
-											<td>6</td>
+											<td class="text-center">d<?php echo $row['hp_dice']; ?></td>
+											<td class="text-center"><?php echo $row['hp']; ?></td>
 										</tr>
 										<tr>
-											<td>HD</td>
-											<td>HP</td>
+											<td class="text-center">HD</td>
+											<td class="text-center">HP</td>
 										</tr>
 									</tbody>
 								</table>
@@ -434,7 +435,7 @@ $row = mysqli_fetch_assoc($result);
 							<td class="text-center"></td>
 							<td class="text-center"><small>STR</small></td>
 							<td class="text-center"></td>
-							<td class="text-center"><small>Arobatics</small></td>
+							<td class="text-center"><small><strike>Arobatics</strike></small></td>
 							<td class="text-center"></td>
 							<td class="text-center"><small>Bonus</small></td>
 						</tr>
@@ -455,7 +456,7 @@ $row = mysqli_fetch_assoc($result);
 							<td class="text-center"></td>
 							<td class="text-center"><small>STR</small></td>
 							<td class="text-center"></td>
-							<td class="text-center"><small>Dexterity</small></td>
+							<td class="text-center"><small><strike>Dexterity</strike></small></td>
 							<td class="text-center"></td>
 							<td class="text-center"><small>Bonus</small></td>
 						</tr>
@@ -476,7 +477,7 @@ $row = mysqli_fetch_assoc($result);
 							<td class="text-center"></td>
 							<td class="text-center"><small>WIS</small></td>
 							<td class="text-center"></td>
-							<td class="text-center"><small>Concentration</small></td>
+							<td class="text-center"><small><strike>Concentration</strike></small></td>
 							<td class="text-center"></td>
 							<td class="text-center"><small>Bonus</small></td>
 						</tr>
@@ -491,21 +492,116 @@ $row = mysqli_fetch_assoc($result);
 					<tbody>
 						<tr>
 							<td class="text-center"><?php
-								echo floor((get_modifier($row['stat_str']) + 0) / 2) + $row['bonus_attack'];
+								echo floor((get_modifier($row['stat_sta']) + get_modifier($row['stat_wis'])) / 2) + $row['bonus_defence'];
 							?></td>
 							<td class="text-center">= (</td>
-							<td class="text-center"><?php echo get_modifier($row['stat_str']); ?></td>
+							<td class="text-center"><?php echo get_modifier($row['stat_sta']); ?></td>
 							<td class="text-center">+</td>
-							<td class="text-center"><?php echo '0'; ?></td>
+							<td class="text-center"><?php echo get_modifier($row['stat_wis']); ?></td>
 							<td class="text-center">) /2 +</td>
-							<td class="text-center"><?php echo $row['bonus_attack']; ?></td>
+							<td class="text-center"><?php echo $row['bonus_defence']; ?></td>
 						</tr>
 						<tr>
 							<td class="text-center"><small>SR</small></td>
 							<td class="text-center"></td>
-							<td class="text-center"><small>STR</small></td>
+							<td class="text-center"><small>STA</small></td>
 							<td class="text-center"></td>
-							<td class="text-center"><small>Arobatics</small></td>
+							<td class="text-center"><small>WIS</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>Bonus</small></td>
+						</tr>
+
+						<tr>
+							<td class="text-center"><?php
+								echo 10 + get_modifier($row['stat_sta']) + (1 - ($row['size'] - 1)) + $row['bonus_defence'];
+							?></td>
+							<td class="text-center">= 10 + </td>
+							<td class="text-center"><?php echo get_modifier($row['stat_sta']); ?></td>
+							<td class="text-center">+</td>
+							<td class="text-center"><?php echo 1 - ($row['size'] - 1); ?></td>
+							<td class="text-center">+</td>
+							<td class="text-center"><?php echo $row['bonus_defence']; ?></td>
+						</tr>
+						<tr>
+							<td class="text-center"><small>AC</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>STA</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>Size</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>Bonus</small></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<table class="table table-sm">
+					<thead class="thead-inverse">
+						<tr>
+							<th colspan="20">Languages</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td>
+				<table class="table table-sm">
+					<thead class="thead-inverse">
+						<tr>
+							<th colspan="20">Speed</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center">x</td>
+							<td class="text-center">x</td>
+							<td class="text-center">x</td>
+							<td class="text-center">x</td>
+							<td class="text-center">x</td>
+						</tr>
+						<tr>
+							<td class="text-center"><small>Walk</small></td>
+							<td class="text-center"><small>Run</small></td>
+							<td class="text-center"><small>Swim</small></td>
+							<td class="text-center"><small>Climb</small></td>
+							<td class="text-center"><small>Fly</small></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td>
+				<table class="table table-sm">
+					<thead class="thead-inverse">
+						<tr>
+							<th colspan="20">Initiative</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center"><?php
+								echo floor((get_modifier($row['stat_int']) + get_modifier($row['stat_wis'])) / 2) + $row['bonus_initiative'];
+							?></td>
+							<td class="text-center">= (</td>
+							<td class="text-center"><?php echo get_modifier($row['stat_int']); ?></td>
+							<td class="text-center">+</td>
+							<td class="text-center"><?php echo get_modifier($row['stat_wis']); ?></td>
+							<td class="text-center">) /2 +</td>
+							<td class="text-center"><?php echo $row['bonus_initiative']; ?></td>
+						</tr>
+						<tr>
+							<td class="text-center"><small>Total</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>INT</small></td>
+							<td class="text-center"></td>
+							<td class="text-center"><small>WIS</small></td>
 							<td class="text-center"></td>
 							<td class="text-center"><small>Bonus</small></td>
 						</tr>
