@@ -13,24 +13,45 @@ if (isset($_POST['name'])) {
 		$password = mysqli_real_escape_string($DB, $_POST['password']);
 		$password2 = mysqli_real_escape_string($DB, $_POST['password2']);
 
-		if ($password == $password2) {
-			$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`)
-				VALUES (\'' . get_datetime() . '\',
-				\'' . $username . '\',
-				\'' . $password . '\',
-				\'' . $name . '\',
-				\'' . $email . '\');';
+		$query = 'SELECT * FROM user WHERE username=\'' . $username . '\' OR email=\'' . $email . '\';';
+		$result = mysqli_query($DB, $query);
 
-			$success = mysqli_query($DB, $query);
-			if ($success) {
-				$message = 'Your account has been created. Please go to your email to activate it.';
+		if (mysqli_num_rows($result) == 0) {
+			if ($password == $password2) {
+				$password = md5($PASSWORDSALT . $password);
+
+				$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`)
+					VALUES (\'' . get_datetime() . '\',
+					\'' . $username . '\',
+					\'' . $password . '\',
+					\'' . $name . '\',
+					\'' . $email . '\');';
+
+				$success = mysqli_query($DB, $query);
+				if ($success) {
+					$message = 'Your account has been created. Please go to your email to activate it.';
+					html_mail($email, 'Seven Realms account activation', 'Activate your account',
+						'Activate your account by clicking on the button below<br/>
+						<a href="https://sevenrealmsgame.com/?page=page_login&activate=' . md5($PASSWORDSALT . $email . $username) . '" target="_blank">
+							<button class="btn btn-primary">Activate</button>
+						</a>');
+				}
+				else {
+					$warning = mysqli_error($DB);
+				}
 			}
 			else {
-				$warning = mysqli_error($DB);
+				$warning = 'The passwords don\'t match. Please try again.';
 			}
 		}
 		else {
-			$warning = 'The passwords don\'t match. Please try again.';
+			$row = mysqli_fetch_assoc($result);
+			if ($row['username'] == $username) {
+				$warning = 'This username is already in use.';
+			}
+			else {
+				$warning = 'This email address is already in use.';
+			}
 		}
 	}
 }
@@ -50,7 +71,7 @@ if ($warning != '') { ?>
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Reguster an account</h3>
+				<h3 class="card-title">Register an account</h3>
 				<hr>
 				<form action="" method="POST">
 					<div class="form-group">
@@ -67,13 +88,13 @@ if ($warning != '') { ?>
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
-						<input class="form-control" name="password" type="text"></input>
+						<input class="form-control" name="password" type="password"></input>
 					</div>
 					<div class="form-group">
 						<label for="password2">Repeat password</label>
-						<input class="form-control" name="password2" type="text"></input>
+						<input class="form-control" name="password2" type="password"></input>
 					</div>
-					<a href="?page=index" class="btn btn-primary">Back</a>
+					<a href="?page=index" class="btn btn-primary">Home</a>
 					<button type="submit" class="btn btn-primary">Create</button>
 				</form>
 			</div>

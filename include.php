@@ -33,6 +33,22 @@ function get_modifier($score) {
 	}
 }
 
+function html_mail($to, $subject, $header, $message) {
+	// To send HTML mail, the Content-type header must be set
+	$headers[] = 'MIME-Version: 1.0';
+	$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+	// Additional headers
+	$headers[] = 'From: Seven Realms <noreply@sevenrealmsgame.com>';
+
+	$html = file_get_contents('template/mail_template.html');
+	$html = str_replace('{{header}}', $header, $html);
+	$html = str_replace('{{message}}', $message, $html);
+
+	// Mail it
+	mail($to, $subject, $html, implode("\r\n", $headers));
+}
+
 if (isset($_GET['hide'])) {
 	setcookie('jumbotron', 1);
 	$SHOW_JUMBOTRON = false;
@@ -80,6 +96,18 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 		$_SESSION['admin'] = $ISADMIN;
 		$_SESSION['username'] = $USERNAME;
 		$_SESSION['name'] = $USERREALNAME;
+	}
+}
+
+if (isset($_GET['activate'])) {
+	$code = $_GET['activate'];
+	$query = 'SELECT * FROM user WHERE md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\' . $code . \';';
+	$result = mysqli_query($DB, $query);
+	if ($result) {
+
+	}
+	else {
+		$warning = mysqli_error($DB);
 	}
 }
 ?>

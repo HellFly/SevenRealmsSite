@@ -78,6 +78,12 @@ switch ($command) {
 				fclose($f);
 			}
 		}
+		$query = 'DELETE FROM user WHERE activated=0 AND DATEDIFF(NOW(),created_at) > 1;';
+		$result = mysqli_query($DB, $query);
+		$num = mysqli_affected_rows($DB);
+		if ($num > 0) {
+			echo 'Deleted ' . $num . ' accounts that were not activated.' . chr(0x0D).chr(0x0A);
+		}
 	break;
 	case null:
 	default:
