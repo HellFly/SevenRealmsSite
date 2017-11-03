@@ -53,6 +53,7 @@
 							<input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" aria-label="Password">
 							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log in</button>
 						</form>
+						<a href="?page=page_register"><button class="btn btn-outline-success my-2 my-sm-0">Register</button></a>
 					<?php }
 					else { ?>
 						<li class="nav-item nav-link disabled">Welcome <?php echo $USERREALNAME; ?></li><a href="?log_out" class="btn btn-outline-success my-2 my-sm-0">Log out</a>

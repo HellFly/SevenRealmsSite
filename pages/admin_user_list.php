@@ -15,13 +15,13 @@ $result = mysqli_query($DB, $query);
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Created at</th>
 								<th>Username</th>
 								<th>Password</th>
 								<th>Name</th>
 								<th>Email</th>
 								<th>Admin</th>
+								<th>Activated</th>
 								<th></th>
 								<th></th>
 							</tr>
@@ -31,13 +31,13 @@ $result = mysqli_query($DB, $query);
 							while ($row = mysqli_fetch_assoc($result)) {
 								?>
 									<tr>
-										<th scope="row"><?php echo $row['id']; ?></th>
 										<td><?php echo $row['created_at']; ?></td>
 										<td><?php echo $row['username']; ?></td>
 										<td>**********</td>
 										<td><?php echo $row['name']; ?></td>
 										<td><?php echo $row['email']; ?></td>
 										<td><?php echo ($row['admin'] ? 'Yes' : 'No'); ?></td>
+										<td><?php echo ($row['activated'] ? 'Yes' : 'No'); ?></td>
 										<td><a href="?page=admin_user_edit&user=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
 										<td><a href="?page=admin_delete&back=admin_user_list&item=user&id=<?php echo $row['id']; ?>" class="btn btn-primary">Delete</a></td>
 									</tr>

@@ -20,13 +20,14 @@ if (isset($_POST['name'])) {
 
 		$password = md5($PASSWORDSALT . $password);
 
-		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`)
+		$query = 'INSERT INTO user(`created_at`, `username`, `password`, `name`, `email`, `admin`, `activated`)
 			VALUES (\'' . get_datetime() . '\',
 			\'' . $username . '\',
 			\'' . $password . '\',
 			\'' . $name . '\',
 			\'' . $email . '\',
-			\'' . $admin . '\');';
+			\'' . $admin . '\',
+			\'1\');';
 
 		$success = mysqli_query($DB, $query);
 		if ($success) {
