@@ -101,7 +101,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 if (isset($_GET['activate'])) {
 	$code = $_GET['activate'];
-	$query = 'SELECT * FROM user WHERE md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\'' . $code . ''\';';
+	$query = 'SELECT * FROM user WHERE md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\'' . $code . '\';';
 	$result = mysqli_query($DB, $query);
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
