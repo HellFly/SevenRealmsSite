@@ -82,7 +82,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
 	$pass = md5($PASSWORDSALT . $pass);
 
-	$result = mysqli_query($DB, 'SELECT * FROM user WHERE username=\'' . $name . '\' AND password=\'' . $pass . '\';');
+	$result = mysqli_query($DB, 'SELECT * FROM user WHERE username=\'' . $name . '\' AND password=\'' . $pass . '\' AND activated=1;');
 	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$LOGGEDIN = true;
