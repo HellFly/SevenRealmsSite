@@ -109,7 +109,6 @@ if (isset($_GET['activate'])) {
 		$result = mysqli_query($DB, $query);
 		if ($result) {
 			$message = 'Your account has been activated. You can now log in.';
-			$message = $query;
 		}
 		else {
 			$warning = mysqli_error($DB);
