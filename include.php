@@ -36,7 +36,7 @@ function get_modifier($score) {
 function html_mail($to, $subject, $header, $message) {
 	// To send HTML mail, the Content-type header must be set
 	$headers[] = 'MIME-Version: 1.0';
-	$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+	$headers[] = 'Content-type: text/html; charset=ISO-8859-1';
 
 	// Additional headers
 	$headers[] = 'From: Seven Realms <noreply@sevenrealmsgame.com>';
@@ -104,7 +104,10 @@ if (isset($_GET['activate'])) {
 	$query = 'SELECT * FROM user WHERE md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\' . $code . \';';
 	$result = mysqli_query($DB, $query);
 	if ($result) {
-
+		$row = mysqli_fetch_assoc($result);
+		$query = 'UPDATE user SET activated=1 WHERE id=' $row['id'] ';';
+		$result = mysqli_query($DB, $query);
+		$message = 'Your account has been activated. You can now log in.';
 	}
 	else {
 		$warning = mysqli_error($DB);
