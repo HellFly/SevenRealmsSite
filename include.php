@@ -105,7 +105,7 @@ if (isset($_GET['activate'])) {
 	$result = mysqli_query($DB, $query);
 	if ($result) {
 		$row = mysqli_fetch_assoc($result);
-		$query = 'UPDATE user SET activated=1 WHERE id=' $row['id'] ';';
+		$query = 'UPDATE user SET activated=1 WHERE id=' . $row['id'] . ';';
 		$result = mysqli_query($DB, $query);
 		$message = 'Your account has been activated. You can now log in.';
 	}
