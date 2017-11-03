@@ -19,7 +19,6 @@ $result = mysqli_query($DB, $query);
 					<table class="table">
 						<thead>
 							<tr>
-								<th>ID</th>
 								<th>Created at</th>
 								<th>Created by</th>
 								<th>Name</th>
@@ -32,7 +31,6 @@ $result = mysqli_query($DB, $query);
 							while ($row = mysqli_fetch_assoc($result)) {
 								?>
 									<tr>
-										<th scope="row"><?php echo $row['id']; ?></th>
 										<td><?php echo $row['created_at']; ?></td>
 										<td><?php echo $row['uname']; ?></td>
 										<td><?php echo $row['name']; ?></td>
