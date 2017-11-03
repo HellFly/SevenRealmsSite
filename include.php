@@ -103,7 +103,7 @@ if (isset($_GET['activate'])) {
 	$code = $_GET['activate'];
 	$query = 'SELECT * FROM user WHERE md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\' . $code . \';';
 	$result = mysqli_query($DB, $query);
-	if ($result) {
+	if (mysqli_num_rows($result) > 0) {
 		$row = mysqli_fetch_assoc($result);
 		$query = 'UPDATE user SET activated=\'1\' WHERE id=\'' . $row['id'] . '\';';
 		$result = mysqli_query($DB, $query);
@@ -116,7 +116,7 @@ if (isset($_GET['activate'])) {
 		}
 	}
 	else {
-		$warning = mysqli_error($DB);
+		$warning = $query;
 	}
 }
 ?>
