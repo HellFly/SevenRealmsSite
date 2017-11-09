@@ -27,10 +27,23 @@ if (isset($_POST['name'])) {
 		$alignment = mysqli_real_escape_string($DB, $_POST['alignment']);
 		$homeland = mysqli_real_escape_string($DB, $_POST['homeland']);
 		$deity = mysqli_real_escape_string($DB, $_POST['deity']);
+		$stat_agi = mysqli_real_escape_string($DB, $_POST['stat_agi']);
+		$stat_cha = mysqli_real_escape_string($DB, $_POST['stat_cha']);
+		$stat_int = mysqli_real_escape_string($DB, $_POST['stat_int']);
+		$stat_lck = mysqli_real_escape_string($DB, $_POST['stat_lck']);
+		$stat_sta = mysqli_real_escape_string($DB, $_POST['stat_sta']);
+		$stat_str = mysqli_real_escape_string($DB, $_POST['stat_str']);
+		$stat_wis = mysqli_real_escape_string($DB, $_POST['stat_wis']);
+		$bonus_save = mysqli_real_escape_string($DB, $_POST['bonus_save']);
+		$bonus_attack = mysqli_real_escape_string($DB, $_POST['bonus_attack']);
+		$bonus_defence = mysqli_real_escape_string($DB, $_POST['bonus_defence']);
+		$bonus_initiative = mysqli_real_escape_string($DB, $_POST['bonus_initiative']);
 
-		$query = 'INSERT INTO character_info(`created_by`, `created_at`, `name`,
+		$query = 'INSERT INTO user_character(`created_by`, `created_at`, `name`,
 			`level`, `class`, `race`, `gender`, `age`, `size`, `alignment`,
-			`homeland`, `deity`)
+			`homeland`, `deity`, `hp_dice`, `hp`, `stat_agi`, `stat_cha`,
+			`stat_int`, `stat_lck`, `stat_sta`, `stat_str`, `stat_wis`, `bonus_save`,
+			`bonus_attack`, `bonus_defence`, `bonus_initiative`)
 			VALUES (\'' . $USERID . '\',
 			\'' . get_datetime() . '\',
 			\'' . $name . '\',
@@ -42,7 +55,20 @@ if (isset($_POST['name'])) {
 			\'' . $size . '\',
 			\'' . $alignment . '\',
 			\'' . $homeland . '\',
-			\'' . $deity . '\');';
+			\'' . $deity . '\',
+			\'' . $hp_dice . '\',
+			\'' . $hp_dice + $hp . '\',
+			\'' . $stat_agi . '\',
+			\'' . $stat_cha . '\',
+			\'' . $stat_int . '\',
+			\'' . $stat_lck . '\',
+			\'' . $stat_sta . '\',
+			\'' . $stat_str . '\',
+			\'' . $stat_wis . '\',
+			\'' . $bonus_save . '\',
+			\'' . $bonus_attack . '\',
+			\'' . $bonus_defence . '\',
+			\'' . $bonus_initiative . '\');';
 
 		$success = mysqli_query($DB, $query);
 		if ($success) {
@@ -168,6 +194,54 @@ if ($warning != '') { ?>
 								<option value="0">Deity 1</option>
 								<option value="1">Deity 2</option>
 							</select>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="stat_agi" class="col-form-label">Agility</label>
+							<input class="form-control" name="stat_agi" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_cha" class="col-form-label">Charisma</label>
+							<input class="form-control" name="stat_cha" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_int" class="col-form-label">Inteligence</label>
+							<input class="form-control" name="stat_int" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_lck" class="col-form-label">Luck</label>
+							<input class="form-control" name="stat_lck" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_sta" class="col-form-label">Stamina</label>
+							<input class="form-control" name="stat_sta" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_str" class="col-form-label">Strength</label>
+							<input class="form-control" name="stat_str" type="number" value="10"></input>
+						</div>
+						<div class="form-group col">
+							<label for="stat_wis" class="col-form-label">Wisdom</label>
+							<input class="form-control" name="stat_wis" type="number" value="10"></input>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col">
+							<label for="bonus_save" class="col-form-label">Save bonus</label>
+							<input class="form-control" name="bonus_save" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_attack" class="col-form-label">Attack bonus</label>
+							<input class="form-control" name="bonus_attack" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_defence" class="col-form-label">Defence bonus</label>
+							<input class="form-control" name="bonus_defence" type="number" value="0"></input>
+						</div>
+						<div class="form-group col">
+							<label for="bonus_initiative" class="col-form-label">Initiative bonus</label>
+							<input class="form-control" name="bonus_initiative" type="number" value="0"></input>
 						</div>
 					</div>
 					<a href="?page=user" class="btn btn-primary">Back</a>

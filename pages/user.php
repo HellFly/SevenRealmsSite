@@ -7,12 +7,12 @@
 		<div class="card-body">
 			<h3 class="card-title">My characters</h3>
 			<?php
-			$query = 'SELECT user_character.id AS id, user_character.name AS name, class.name AS class, race.name AS race
-				FROM user_character, class, race
-				WHERE user_character.created_by=' . $USERID . '
-				AND user_character.class = class.id
-				AND user_character.race = race.id
-				ORDER BY user_character.name;';
+			$query = 'SELECT character_info.id AS id, character_info.name AS name, class.name AS class, race.name AS race
+				FROM character_info, class, race
+				WHERE character_info.created_by=' . $USERID . '
+				AND character_info.class = class.id
+				AND character_info.race = race.id
+				ORDER BY character_info.name;';
 			$result = mysqli_query($DB, $query);
 			if (mysqli_num_rows($result) > 0) {
 				?>
