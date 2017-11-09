@@ -29,12 +29,11 @@ if (isset($_POST['name'])) {
 		$deity = mysqli_real_escape_string($DB, $_POST['deity']);
 
 		$query = 'INSERT INTO character_info(`created_by`, `created_at`, `name`,
-			`level`, `class`, `race`, `gender`, `age`, `size`, `alignment`,
+			`class`, `race`, `gender`, `age`, `size`, `alignment`,
 			`homeland`, `deity`)
 			VALUES (\'' . $USERID . '\',
 			\'' . get_datetime() . '\',
 			\'' . $name . '\',
-			\'1\',
 			\'' . $class . '\',
 			\'' . $race . '\',
 			\'' . $gender . '\',
