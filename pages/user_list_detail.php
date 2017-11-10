@@ -78,7 +78,7 @@ if ($warning != '') { ?>
 									<td><?php echo $i; ?></td>
 									<td><?php echo $row['name']; ?></th>
 									<td><?php echo $row['description']; ?></td>
-									<td></td>
+									<td><a href="?page=user_delete&back=user_list_detail&back_id=<?php echo $list; ?>&item=list_item&id=<?php echo $row['id']; ?>" class="btn btn-primary">Delete</a></td>
 								</tr>
 							<?php
 								$i += 1;
