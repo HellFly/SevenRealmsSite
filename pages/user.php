@@ -14,7 +14,7 @@
 				AND character_info.race = race.id
 				ORDER BY character_info.name;';
 			$result = mysqli_query($DB, $query);
-			if (mysqli_num_rows($result) > 0) {
+			if ($result && mysqli_num_rows($result) > 0) {
 				?>
 				<table class="table span12">
 					<thead>
@@ -54,7 +54,7 @@
 			<?php
 			$query = 'SELECT * FROM list WHERE `created_by`=' . $USERID . ' ORDER BY name;';
 			$result = mysqli_query($DB, $query);
-			if (mysqli_num_rows($result) > 0) {
+			if ($result && mysqli_num_rows($result) > 0) {
 				?>
 				<table class="table span12">
 					<thead>
