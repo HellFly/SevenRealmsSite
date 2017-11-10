@@ -63,6 +63,7 @@ if ($warning != '') { ?>
 					<table class="table">
 						<thead>
 							<tr>
+								<th>#</th>
 								<th>Name</th>
 								<th>Description</th>
 								<th></th>
@@ -70,14 +71,17 @@ if ($warning != '') { ?>
 						</thead>
 						<tbody>
 							<?php
+							$i = 1;
 							while ($row = mysqli_fetch_assoc($result)) {
 							?>
 								<tr>
+									<td><?php echo $i; ?></td>
 									<td><?php echo $row['name']; ?></th>
 									<td><?php echo $row['description']; ?></td>
 									<td></td>
 								</tr>
 							<?php
+								$i += 1;
 							}
 							?>
 						</tbody>
