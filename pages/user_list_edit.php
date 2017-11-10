@@ -50,7 +50,7 @@ if ($warning != '') { ?>
 	<div class="col">
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title">Edit a magic school</h3>
+				<h3 class="card-title">Edit a d100 list</h3>
 				<hr>
 				<form action="" method="POST">
 					<div class="form-group">
