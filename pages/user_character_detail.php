@@ -32,7 +32,6 @@ $info = mysqli_fetch_assoc($result);
 		<div class="card">
 			<div class="card-body">
 				<h3>Character stats</h3>
-				<hr>
 				<?php
 				$query = 'SELECT * FROM character_sheet WHERE character_info=' . $character . ';';
 				$result = mysqli_query($DB, $query);
@@ -40,13 +39,13 @@ $info = mysqli_fetch_assoc($result);
 					$row = mysqli_fetch_assoc($result);
 					?>
 					<table class="table table-sm">
-						<thead <!--class="thead-inverse"-->>
+						<!--<thead class="thead-inverse">
 							<tr>
 								<th colspan="3">
 									Stats
 								</th>
 							</tr>
-						</thead>
+						</thead>-->
 						<tbody>
 							<tr>
 								<td>AGI</td>
@@ -89,6 +88,7 @@ $info = mysqli_fetch_assoc($result);
 				}
 				else {
 					?>
+					<hr>
 					There is no character sheet yet.<br/>
 					<a href="?page=user_character_sheet_create&character=<?php echo $character; ?>" class="btn btn-primary">Create</a>
 					<?php
