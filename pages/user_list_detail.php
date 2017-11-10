@@ -32,7 +32,7 @@ if (isset($_POST['name'])) {
 
 $query = 'SELECT * FROM list_item
 	WHERE `list_id`=' . $list . '
-	ORDER BY `name`;';
+	ORDER BY `created_at`;';
 
 $result = mysqli_query($DB, $query);
 
