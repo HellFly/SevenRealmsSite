@@ -22,8 +22,6 @@ if (isset($_POST['name'])) {
 		$gender = mysqli_real_escape_string($DB, $_POST['gender']);
 		$age = mysqli_real_escape_string($DB, $_POST['age']);
 		$size = mysqli_real_escape_string($DB, $_POST['size']);
-		$hp_dice = mysqli_real_escape_string($DB, $_POST['hp_dice']);
-		$hp = mysqli_real_escape_string($DB, $_POST['hp']);
 		$alignment = mysqli_real_escape_string($DB, $_POST['alignment']);
 		$homeland = mysqli_real_escape_string($DB, $_POST['homeland']);
 		$deity = mysqli_real_escape_string($DB, $_POST['deity']);
@@ -100,6 +98,8 @@ if ($warning != '') { ?>
 							<?php } ?>
 							</select>
 						</div>
+					</div>
+					<div class="form-row">
 						<div class="form-group col">
 							<label for="gender" class="col-form-label">Gender</label>
 							<select class="form-control" name="gender">
@@ -107,8 +107,6 @@ if ($warning != '') { ?>
 								<option value="1">F</option>
 							</select>
 						</div>
-					</div>
-					<div class="form-row">
 						<div class="form-group col">
 							<label for="age" class="col-form-label">Age</label>
 							<input class="form-control" name="age" type="number" value="18"></input>
@@ -120,18 +118,6 @@ if ($warning != '') { ?>
 								<option value="1" selected>M</option>
 								<option value="2">L</option>
 							</select>
-						</div>
-						<div class="form-group col">
-							<label for="hp_dice" class="col-form-label">Hit die</label>
-							<select class="form-control" name="hp_dice">
-								<option value="6">d6</option>
-								<option value="8" selected>d8</option>
-								<option value="10">d10</option>
-								<option value="12">d12</option>
-							</select>
-						</div><div class="form-group col">
-							<label for="hp" class="col-form-label">First HP roll</label>
-							<input class="form-control" name="hp" type="number" value="0"></input>
 						</div>
 					</div>
 					<div class="form-row">

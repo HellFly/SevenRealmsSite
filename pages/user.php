@@ -20,8 +20,7 @@
 					<thead>
 						<tr>
 							<th style="width: 20%;">Name</th>
-							<th style="width: 60%;">Description</th>
-							<th style="width: 10%;"></th>
+							<th style="width: 70%;">Description</th>
 							<th style="width: 10%;"></th>
 						</tr>
 					</thead>
@@ -31,7 +30,6 @@
 						<tr>
 							<td><?php echo $row['name']; ?></td>
 							<td><?php echo $row['race'] . ' ' . $row['class']; ?></td>
-							<td><a href="?page=user_character_edit&character=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a></td>
 							<td><a href="?page=user_character_detail&character=<?php echo $row['id']; ?>" class="btn btn-primary">View</a></td>
 						</tr>
 						<?php
