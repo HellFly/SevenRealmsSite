@@ -39,7 +39,9 @@ function html_mail($to, $subject, $header, $message) {
 	$headers[] = 'Content-type: text/html; charset=ISO-8859-1';
 
 	// Additional headers
-	$headers[] = 'From: Seven Realms <noreply@sevenrealmsgame.com>';
+	$headers[] = 'From: Seven Realms <seven@sevenrealmsgame.com>';
+	$headers[] = 'Reply-To: '. $to;
+	$headers[] = 'X-Mailer: PHP/' . phpversion();
 
 	$html = file_get_contents('template/mail_template.html');
 	$html = str_replace('{{header}}', $header, $html);
