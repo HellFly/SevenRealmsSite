@@ -85,4 +85,16 @@
 			</div>
 		</div>
 	</div>
+	<div class="col-md-6 mb-3">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">Characters</h3>
+				<hr>
+				<p class="card-text">
+					<a href="?page=admin_character_list" class="btn btn-primary">View all characters</a>
+					<a href="?page=admin_character_create" class="btn btn-primary">Create NPC</a>
+				</p>
+			</div>
+		</div>
+	</div>
 </div>
