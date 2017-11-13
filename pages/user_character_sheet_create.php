@@ -52,6 +52,7 @@ if (isset($_POST['stat_agi'])) {
 		$success = mysqli_query($DB, $query);
 		if ($success) {
 			$message = 'The character stats were added';
+			header('Refresh: 0; url=indes.php?page=user_character_detail&character=' . $character);
 		}
 		else {
 			$warning = mysqli_error($DB);
