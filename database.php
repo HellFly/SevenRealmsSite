@@ -78,7 +78,7 @@ switch ($command) {
 				fclose($f);
 			}
 		}
-		$query = 'DELETE FROM user WHERE activated=0 AND DATEDIFF(NOW(),created_at) > 1;';
+		$query = 'DELETE FROM user WHERE activated=0 AND DATEDIFF(NOW(),created_at) > 7;';
 		$result = mysqli_query($DB, $query);
 		$num = mysqli_affected_rows($DB);
 		if ($num > 0) {
