@@ -145,14 +145,14 @@ if ($warning != '') { ?>
 								<option value="4">Solidian</option>
 								<option value="5">Swamps</option>
 								<option value="6">Tundra</option>
+								<option value="7">Other</option>
 							</select>
 						</div>
 						<div class="form-group col">
-							<label for="deity" class="col-form-label">Deity</label>
-							<select class="form-control" name="deity">
-								<option value="0">Deity 1</option>
-								<option value="1">Deity 2</option>
-							</select>
+							<div class="form-group col">
+								<label for="deity" class="col-form-label">Deity</label>
+								<input class="form-control" name="deity" type="text"></input>
+							</div>
 						</div>
 					</div>
 					<a href="?page=user" class="btn btn-primary">Back</a>

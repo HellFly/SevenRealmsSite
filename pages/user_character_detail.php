@@ -94,5 +94,39 @@ $info = mysqli_fetch_assoc($result);
 		</div>
 	</div>
 </div>
+<div class="card-deck">
+	<div class="card">
+		<div class="card-body">
+			<h3>Notes</h3>
+			<hr>
+			<a href="?page=user_character_note_create&character=<?php echo $character; ?>" class="btn btn-primary">Add note</a>
+			<br/>
+			<div class="card-deck">
+			<?php
+			$query = 'SELECT * FROM character_note WHERE character_info=' . $character . ';';
+			$result = mysqli_query($DB, $query);
+
+			$i = 1;
+			while ($row = mysqli_fetch_assoc($result)) {
+				if ($i %3 == 0) {
+				?>
+				</div>
+				<div class="card-deck">
+				<?php } ?>
+					<div class="card">
+						<div class="card-body">
+							<h3><?php echo $row['title']; ?></h3>
+							<hr>
+							<?php echo $row['note']; ?>
+						</div>
+					</div>
+				</div>
+			<?php
+			$i += 1;
+			}
+			?>
+		</div>
+	</div>
+</div>
 <br/>
 <a href="?page=user" class="btn btn-primary">Back</a>
