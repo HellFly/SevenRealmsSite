@@ -6,7 +6,7 @@ $query = 'SELECT character_info.id AS id, user.id AS uid, character_info.created
 	WHERE character_info.created_by = user.id
 	AND class.id = character_info.class
 	AND race.id = character_info.race
-	ORDER BY character_info.name DESC';
+	ORDER BY character_info.name;';
 
 $result = mysqli_query($DB, $query);
 ?>
