@@ -106,25 +106,25 @@ $info = mysqli_fetch_assoc($result);
 			$query = 'SELECT * FROM character_note WHERE character_info=' . $character . ';';
 			$result = mysqli_query($DB, $query);
 
-			$i = 1;
+			$i = 0;
 			while ($row = mysqli_fetch_assoc($result)) {
-				if ($i %3 == 0) {
+				if ($i != 0 && $i %3 == 0) {
 				?>
-				</div>
+			</div><br/>
 				<div class="card-deck">
 				<?php } ?>
-					<div class="card">
-						<div class="card-body">
-							<h3><?php echo $row['title']; ?></h3>
-							<hr>
-							<?php echo $row['note']; ?>
-						</div>
+				<div class="card">
+					<div class="card-body">
+						<h3><?php echo $row['title']; ?></h3>
+						<hr>
+						<?php echo $row['note']; ?>
 					</div>
 				</div>
-			<?php
-			$i += 1;
-			}
-			?>
+				<?php
+				$i += 1;
+				}
+				?>
+			</div>
 		</div>
 	</div>
 </div>
