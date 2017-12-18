@@ -16,6 +16,37 @@ $USERREALNAME = '';
 $PAGE = 'index';
 $SHOW_JUMBOTRON = true;
 
+// http://digitcodes.com/create-simple-php-bbcode-parser-function/
+// https://gist.github.com/afsalrahim/bc8caf497a4b54c5d75d
+$BB_CODE_FIND = array(
+	'~\[b\](.*?)\[/b\]~s',
+	'~\[i\](.*?)\[/i\]~s',
+	'~\[u\](.*?)\[/u\]~s',
+	'~\[color=(.*?)\](.*?)\[/color\]~s',
+	'~\[url\]((?:ftp|https?)://.*?)\[/url\]~s',
+	'~\[img\](https?://.*?\.(?:jpg|jpeg|gif|png|bmp))\[/img\]~s'
+);
+$BB_HTML_REPLACE = array(
+	'<b>$1</b>',
+	'<i>$1</i>',
+	'<span style="text-decoration:underline;">$1</span>',
+	'<span style="color:$1;">$2</span>',
+	'<a href="$1">$1</a>',
+	'<img src="$1" alt="" />'
+);
+
+$BB_HTML_FIND = array(
+	'~\<b\>(.*?)\</b\>~s',
+	'~\<i\>(.*?)\</i\>~s',
+	'~\<span style="text-decoration:underline;"\>(.*?)\</span\>~s'
+);
+$BB_CODE_REPLACE = array(
+	'[b]$1[/b]',
+	'[i]$1[/i]',
+	'[u]$1[/u]'
+);
+
+
 session_start();
 
 function get_datetime() {
@@ -50,6 +81,14 @@ function html_mail($to, $subject, $header, $message) {
 
 	// Mail it
 	mail($to, $subject, $html, implode("\r\n", $headers));
+}
+
+function bb_to_html($code) {
+	return preg_replace($BB_CODE_FIND, $BB_HTML_REPLACE, $code);
+}
+
+function html_to_bb($code) {
+	return preg_replace($BB_HTML_FIND, $BB_CODE_REPLACE, $code);
 }
 
 if (isset($_GET['hide'])) {
