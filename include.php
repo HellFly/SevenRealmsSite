@@ -16,41 +16,28 @@ $USERREALNAME = '';
 $PAGE = 'index';
 $SHOW_JUMBOTRON = true;
 
-// http://digitcodes.com/create-simple-php-bbcode-parser-function/
-// https://gist.github.com/afsalrahim/bc8caf497a4b54c5d75d
-$BB_CODE_FIND = array(
-	'~\[b\](.*?)\[/b\]~s',
-	'~\[i\](.*?)\[/i\]~s',
-	'~\[u\](.*?)\[/u\]~s',
-	'~\[color=(.*?)\](.*?)\[/color\]~s',
-	'~\[url\]((?:ftp|https?)://.*?)\[/url\]~s',
-	'~\[img\](https?://.*?\.(?:jpg|jpeg|gif|png|bmp))\[/img\]~s'
-);
-$BB_HTML_REPLACE = array(
-	'<b>$1</b>',
-	'<i>$1</i>',
-	'<span style="text-decoration:underline;">$1</span>',
-	'<span style="color:$1;">$2</span>',
-	'<a href="$1">$1</a>',
-	'<img src="$1" alt="" />'
-);
-
-$BB_HTML_FIND = array(
-	'~\<b\>(.*?)\</b\>~s',
-	'~\<i\>(.*?)\</i\>~s',
-	'~\<span style="text-decoration:underline;"\>(.*?)\</span\>~s'
-);
-$BB_CODE_REPLACE = array(
-	'[b]$1[/b]',
-	'[i]$1[/i]',
-	'[u]$1[/u]'
-);
-
-
 session_start();
 
 function get_datetime() {
 	return date('Y-m-d H:i:s');
+}
+
+// http://php.net/manual/en/function.nl2br.php
+/**
+* Convert BR tags to nl
+*
+* @param string The string to convert
+* @return string The converted string
+*/
+function br2nl($string)
+{
+    return preg_replace('/\<br(\s*)?\/?\>/i', "\n", $string);
+}
+
+// http://php.net/manual/en/function.nl2br.php
+function nl2br_real($string) {
+	$string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
+	return $string;
 }
 
 function get_modifier($score) {
@@ -83,11 +70,50 @@ function html_mail($to, $subject, $header, $message) {
 	mail($to, $subject, $html, implode("\r\n", $headers));
 }
 
+// http://digitcodes.com/create-simple-php-bbcode-parser-function/
+// https://gist.github.com/afsalrahim/bc8caf497a4b54c5d75d
+// Test at: https://regex101.com/
 function bb_to_html($code) {
+	$BB_CODE_FIND = array(
+		'~\[b\](.*?)\[/b\]~s',
+		'~\[i\](.*?)\[/i\]~s',
+		'~\[u\](.*?)\[/u\]~s',
+		'~\[color=(.*?)\](.*?)\[/color\]~s',
+		'~\[url=(https?://.*?)\](.*?)\[/url\]~s',
+		'~\[img\](https?://.*?\.(?:jpg|jpeg|gif|png|bmp))\[/img\]~s',
+		'~\[page=(.*?)](.*?)\[/page\]~s'
+	);
+	$BB_HTML_REPLACE = array(
+		'<b>$1</b>',
+		'<i>$1</i>',
+		'<span style="text-decoration:underline;">$1</span>',
+		'<span style="color:$1;">$2</span>',
+		'<a target="_blank" href="$1">$2</a>',
+		'<img src="$1" alt="" />',
+		'<a href="?page=wiki&wiki_page=$1">$2</a>'
+	);
 	return preg_replace($BB_CODE_FIND, $BB_HTML_REPLACE, $code);
 }
 
 function html_to_bb($code) {
+	$BB_HTML_FIND = array(
+		'~\<b\>(.*?)\</b\>~s',
+		'~\<i\>(.*?)\</i\>~s',
+		'~\<span style="text-decoration:underline;"\>(.*?)\</span\>~s',
+		'~\<span style="color:(.*?);"\>(.*?)\</span\>~s',
+		'~\<a target="_blank" href="(.*?)"\>(.*?)\</a\>~s',
+		'~\<img src="(.*?)" alt="" /\>~s',
+		'~\<a href="\?page=wiki&wiki_page=(.*?)"\>(.*?)\</a\>~s',
+	);
+	$BB_CODE_REPLACE = array(
+		'[b]$1[/b]',
+		'[i]$1[/i]',
+		'[u]$1[/u]',
+		'[color=$1]$2[/color]',
+		'[url=$1]$2[/url]',
+		'[img]$1[/img]',
+		'[page=$1]$2[/page]'
+	);
 	return preg_replace($BB_HTML_FIND, $BB_CODE_REPLACE, $code);
 }
 

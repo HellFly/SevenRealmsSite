@@ -37,6 +37,9 @@
 							<a class="nav-link" href="?page=admin">Admin</a>
 						</li>
 						<?php } ?>
+						<li class="nav-item<?php if ($PAGE == 'wiki') { echo ' active'; } ?>">
+							<a class="nav-link" href="?page=wiki">Wiki <span class="sr-only">(current)</span></a>
+						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contents</a>
 							<div class="dropdown-menu" aria-labelledby="dropdown01">
