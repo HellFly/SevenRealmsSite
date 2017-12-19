@@ -89,6 +89,8 @@ if ($warning != '') { ?>
 				<li>This is a <a target="_blank" href="https://google.nl">link</a> <code>This is a [url=https://google.nl]link[/url]</code></li>
 				<li>This is an image <img src="http://lorempixel.com/output/nature-q-c-128-64-2.jpg" alt="" /> <code>This is an image [img]http://lorempixel.com/output/nature-q-c-128-64-2.jpg[/img]</code></li>
 				<li>This is a link to a <a href="?page=wiki&wiki_page=new page">new page</a> on this wiki <code>This is a link to a [page=new page]new page[/page] on this wiki</code></li>
+				<li>For a title use this: <code>[title]Title[/title]</code></li>
+				<li>For a subtitle use this: <code>[subtitle]Subtitle[/subtitle]</code>
 			</ul>
 		</div>
 	</div>

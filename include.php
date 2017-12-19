@@ -36,7 +36,7 @@ function br2nl($string)
 
 // http://php.net/manual/en/function.nl2br.php
 function nl2br_real($string) {
-	$string = str_replace(array("\r\n", "\r", "\n"), "<br />", $string);
+	$string = str_replace(array("\r\n", "\r", "\n"), "<br/>", $string);
 	return $string;
 }
 
@@ -81,7 +81,9 @@ function bb_to_html($code) {
 		'~\[color=(.*?)\](.*?)\[/color\]~s',
 		'~\[url=(https?://.*?)\](.*?)\[/url\]~s',
 		'~\[img\](https?://.*?\.(?:jpg|jpeg|gif|png|bmp))\[/img\]~s',
-		'~\[page=(.*?)](.*?)\[/page\]~s'
+		'~\[page=(.*?)](.*?)\[/page\]~s',
+		'~\[title\](.*?)\[/title\]~s',
+		'~\[subtitle\](.*?)\[/subtitle\]~s'
 	);
 	$BB_HTML_REPLACE = array(
 		'<b>$1</b>',
@@ -90,7 +92,9 @@ function bb_to_html($code) {
 		'<span style="color:$1;">$2</span>',
 		'<a target="_blank" href="$1">$2</a>',
 		'<img src="$1" alt="" />',
-		'<a href="?page=wiki&wiki_page=$1">$2</a>'
+		'<a href="?page=wiki&wiki_page=$1">$2</a>',
+		'<h2>$1</h2><hr/>',
+		'<h4>$1</h4>'
 	);
 	return preg_replace($BB_CODE_FIND, $BB_HTML_REPLACE, $code);
 }
@@ -104,6 +108,8 @@ function html_to_bb($code) {
 		'~\<a target="_blank" href="(.*?)"\>(.*?)\</a\>~s',
 		'~\<img src="(.*?)" alt="" /\>~s',
 		'~\<a href="\?page=wiki&wiki_page=(.*?)"\>(.*?)\</a\>~s',
+		'~\<h2\>(.*?)\</h2\>\<hr/\>~s',
+		'~\<h4\>(.*?)\</h4\>~s'
 	);
 	$BB_CODE_REPLACE = array(
 		'[b]$1[/b]',
@@ -112,7 +118,9 @@ function html_to_bb($code) {
 		'[color=$1]$2[/color]',
 		'[url=$1]$2[/url]',
 		'[img]$1[/img]',
-		'[page=$1]$2[/page]'
+		'[page=$1]$2[/page]',
+		'[title]$1[/title]',
+		'[subtitle]$1[/subtitle]'
 	);
 	return preg_replace($BB_HTML_FIND, $BB_CODE_REPLACE, $code);
 }
