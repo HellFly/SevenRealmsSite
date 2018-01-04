@@ -1,4 +1,5 @@
 <?php
+// If the configuration file does not exist yet, copy one from the example file
 if (!file_exists('config.php')) {
 	copy('config.php.example', 'config.php');
 }
@@ -14,10 +15,14 @@ $USERNAME = '';
 $USERREALNAME = '';
 
 $PAGE = 'index';
-$SHOW_JUMBOTRON = true;
 
 session_start();
 
+/**
+ * Get the current date and time in MySQL format
+ *
+ * @return string The current date and time
+ */
 function get_datetime() {
 	return date('Y-m-d H:i:s');
 }
@@ -35,11 +40,23 @@ function br2nl($string)
 }
 
 // http://php.net/manual/en/function.nl2br.php
+/**
+ * Convert new lines into BR tags
+ *
+ * @param string The string to convert
+ * @return string The converted string
+ */
 function nl2br_real($string) {
 	$string = str_replace(array("\r\n", "\r", "\n"), "<br/>", $string);
 	return $string;
 }
 
+/**
+ * Returns the modifier for a d20 roll
+ *
+ * @param int The dice's roll
+ * @return int The modifier
+ */
 function get_modifier($score) {
 	if ($score >= 10) {
 		$score -= 10;
@@ -51,6 +68,15 @@ function get_modifier($score) {
 	}
 }
 
+/**
+ * Send a HTML mail
+ *
+ * @param string The address to send the email to
+ * @param string The subject header of the email
+ * @param string The title displayed inside of the mail
+ * @param string The content of the mail
+ * @return void
+ */
 function html_mail($to, $subject, $header, $message) {
 	// To send HTML mail, the Content-type header must be set
 	$headers[] = 'MIME-Version: 1.0';
@@ -73,6 +99,12 @@ function html_mail($to, $subject, $header, $message) {
 // http://digitcodes.com/create-simple-php-bbcode-parser-function/
 // https://gist.github.com/afsalrahim/bc8caf497a4b54c5d75d
 // Test at: https://regex101.com/
+/**
+ * Convert BB code to html to store in the database
+ *
+ * @param string The string to convert
+ * @return string The converted string
+ */
 function bb_to_html($code) {
 	$BB_CODE_FIND = array(
 		'~\[b\](.*?)\[/b\]~s',
@@ -99,6 +131,12 @@ function bb_to_html($code) {
 	return preg_replace($BB_CODE_FIND, $BB_HTML_REPLACE, $code);
 }
 
+/**
+ * Convert HTML code back to BB code for the editor
+ *
+ * @param string The string to convert
+ * @return string The converted string
+ */
 function html_to_bb($code) {
 	$BB_HTML_FIND = array(
 		'~\<b\>(.*?)\</b\>~s',
@@ -125,18 +163,12 @@ function html_to_bb($code) {
 	return preg_replace($BB_HTML_FIND, $BB_CODE_REPLACE, $code);
 }
 
-if (isset($_GET['hide'])) {
-	setcookie('jumbotron', 1);
-	$SHOW_JUMBOTRON = false;
-}
-if (isset($_COOKIE['jumbotron'])) {
-	$SHOW_JUMBOTRON = false;
-}
-
+// Get the current requested page
 if (isset($_GET['page'])) {
 	$PAGE = $_GET['page'];
 }
 
+// Log the user out
 if (isset($_GET['log_out'])) {
 	unset($_SESSION);
 	session_destroy();
@@ -144,6 +176,7 @@ if (isset($_GET['log_out'])) {
 	exit();
 }
 
+// Check if there is an existing session
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 	$LOGGEDIN = true;
 	$USERID = $_SESSION['userid'];
@@ -152,6 +185,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 	$USERREALNAME = $_SESSION['name'];
 }
 
+// Handle logging in
 if (isset($_POST['username']) && isset($_POST['password'])) {
 	$name = $_POST['username'];
 	$pass = $_POST['password'];
@@ -175,6 +209,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	}
 }
 
+// Handle activating accounts
 if (isset($_GET['activate'])) {
 	$code = $_GET['activate'];
 	$query = 'SELECT * FROM user WHERE activated=0 AND md5(CONCAT(\'' . $PASSWORDSALT . '\', `email`, `username`))=\'' . $code . '\';';
