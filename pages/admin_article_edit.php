@@ -21,7 +21,7 @@ if (isset($_POST['title'])) {
 
 		$success = mysqli_query($DB, $query);
 		if ($success) {
-			$message = 'The class was updated';
+			$message = 'The article was updated';
 		}
 		else {
 			$warning = mysqli_error($DB);
